@@ -1,4 +1,4 @@
-import { UserResponse } from "./user";
+import { UserI } from "../user";
 
 export interface RegisterRequest {
   name: string;
@@ -9,7 +9,7 @@ export interface RegisterRequest {
 }
 
 export interface RegisterResponse {
-  user: UserResponse;
+  user: UserI;
   token: string;
   refreshToken: string;
 }
