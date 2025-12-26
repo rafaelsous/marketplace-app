@@ -19,3 +19,5 @@ export const registerSchema = yup.object({
     .required("Confirmação de senha é obrigatória")
     .oneOf([yup.ref("password"), "Senhas não coincidem"]),
 });
+
+export type RegisterFormData = yup.InferType<typeof registerSchema>;
