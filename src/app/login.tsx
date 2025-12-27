@@ -1,14 +1,10 @@
 import { router } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 
-import { AppInput } from "../shared/components/AppInput";
-
 export default function Login() {
   return (
     <View className="flex-1 items-center justify-center gap-4">
       <Text className="text-purple-base">Login Screen</Text>
-
-      <AppInput />
 
       <TouchableOpacity
         hitSlop={16}
