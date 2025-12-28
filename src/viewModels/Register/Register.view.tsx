@@ -1,44 +1,53 @@
-import { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
-import { AppInput } from "@/shared/components/AppInput";
 import { useRegisterViewModel } from "./useRegister.viewModel";
+import { AppInputController } from "@/shared/components/AppInputController";
 
 export function RegisterView({
   onSubmit,
+  control,
 }: Readonly<ReturnType<typeof useRegisterViewModel>>) {
-  const [email, setEmail] = useState("");
-
   return (
     <View className="flex-1 justify-center gap-4">
       <Text>Crie sua conta</Text>
       <Text>Informe os seus dados pessoais e de acesso</Text>
 
-      <AppInput label="Nome" leftIcon="User" placeholder="Seu nome completo" />
+      <AppInputController
+        control={control}
+        name="name"
+        label="Nome"
+        leftIcon="User"
+        placeholder="Seu nome completo"
+      />
 
-      <AppInput
+      <AppInputController
+        control={control}
+        name="phone"
         label="Telefone"
         leftIcon="Phone"
         placeholder="(00) 00000-0000"
       />
 
-      <AppInput
+      <AppInputController
+        control={control}
+        name="email"
         label="E-mail"
         leftIcon="Letter"
         placeholder="mail@exemplo.br"
-        value={email}
-        onChangeText={setEmail}
-        error="E-mail inválido"
       />
 
-      <AppInput
+      <AppInputController
+        control={control}
+        name="password"
         label="Senha"
         leftIcon="KeyMinimalisticSquare2"
         placeholder="Sua senha"
         secureTextEntry
       />
 
-      <AppInput
+      <AppInputController
+        control={control}
+        name="passwordConfirm"
         label="Confirmar senha"
         leftIcon="KeyMinimalisticSquare2"
         placeholder="Confirme a senha"
