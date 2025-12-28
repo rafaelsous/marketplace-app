@@ -44,7 +44,7 @@ export function useAppInputViewModel({
     onFocus?.(event);
   }
 
-  function handleBlur(event: FocusEvent) {
+  function handleBlur(event: BlurEvent) {
     setIsFocused(false);
     onBlur?.(event);
   }
@@ -57,6 +57,14 @@ export function useAppInputViewModel({
     return colors.gray[200];
   }
 
+  function handleTextChange(text: string) {
+    if (mask) {
+      onChangeText?.(mask(text) || "");
+    } else {
+      onChangeText?.(text);
+    }
+  }
+
   return {
     handleToggleShowPassword,
     handleWrapperPress,
@@ -64,5 +72,7 @@ export function useAppInputViewModel({
     handleBlur,
     getIconColor,
     showPassword,
+    handleTextChange,
+    isFocused,
   };
 }

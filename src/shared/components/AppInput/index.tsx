@@ -4,6 +4,7 @@ import type { OutlineIconName } from "react-native-solar-icons/dist/icons/index.
 
 import { appInputVariants, AppInputVariantsProps } from "./input.variants";
 import { useAppInputViewModel } from "./useAppInputViewModel";
+import { colors } from "../../../styles/colors";
 
 type Props = TextInputProps &
   AppInputVariantsProps & {
@@ -38,6 +39,8 @@ export function AppInput({
     handleToggleShowPassword,
     handleWrapperPress,
     showPassword,
+    handleTextChange,
+    isFocused,
   } = useAppInputViewModel({
     error,
     onFocus,
@@ -50,18 +53,40 @@ export function AppInput({
     value,
   });
 
-  const styles = appInputVariants();
+  const styles = appInputVariants({
+    isFocused,
+  });
 
   return (
     <View className={styles.container({ className: containerClassName })}>
-      <Text className={styles.label()}>Label</Text>
+      <Text className={styles.label()}>{label}</Text>
 
-      <Pressable className={styles.wrapper()}>
-        <SolarIcon name="KeyMinimalisticSquare2" size={22} type="outline" />
+      <Pressable className={`${styles.wrapper()} gap-3`}>
+        {leftIcon && (
+          <SolarIcon
+            name={leftIcon}
+            size={22}
+            color={getIconColor()}
+            type="outline"
+          />
+        )}
 
-        <TextInput className={styles.input()} {...rest} />
+        <TextInput
+          className={styles.input()}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          placeholderTextColor={colors.gray[200]}
+          {...rest}
+        />
 
-        <SolarIcon name="Eye" size={22} type="outline" />
+        {rightIcon && (
+          <SolarIcon
+            name={rightIcon}
+            size={22}
+            color={getIconColor()}
+            type="outline"
+          />
+        )}
       </Pressable>
     </View>
   );

@@ -5,12 +5,15 @@ export const appInputVariants = tv({
     container: "w-full, my-4",
     wrapper: "pb-2 flex-row items-center border-b border-gray-200",
     input: "flex-1 text-base text-gray-500 bg-transparent",
-    label: "mb-1 text-xs text-gray-300 font-semibold",
+    label: "mb-1 text-xs text-gray-300 font-semibold uppercase",
     error: "mt-1 text-sm text-danger",
   },
   variants: {
     isFocused: {
-      true: {},
+      true: {
+        wrapper: "border-purple-base",
+        label: "text-purple-base",
+      },
     },
     isError: {
       true: {},
