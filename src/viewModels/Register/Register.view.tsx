@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
 import { AppInput } from "../../shared/components/AppInput";
@@ -6,12 +7,15 @@ import { useRegisterViewModel } from "./useRegister.viewModel";
 export function RegisterView({
   onSubmit,
 }: Readonly<ReturnType<typeof useRegisterViewModel>>) {
+  const [email, setEmail] = useState("");
+
   return (
     <View className="flex-1 justify-center gap-4">
       <Text>Crie sua conta</Text>
       <Text>Informe os seus dados pessoais e de acesso</Text>
 
       <AppInput label="Nome" leftIcon="User" placeholder="Seu nome completo" />
+
       <AppInput
         label="Telefone"
         leftIcon="Phone"
@@ -22,12 +26,16 @@ export function RegisterView({
         label="E-mail"
         leftIcon="Letter"
         placeholder="mail@exemplo.br"
+        value={email}
+        onChangeText={setEmail}
       />
+
       <AppInput
         label="Senha"
         leftIcon="KeyMinimalisticSquare2"
         placeholder="Sua senha"
       />
+
       <AppInput
         label="Confirmar senha"
         leftIcon="KeyMinimalisticSquare2"

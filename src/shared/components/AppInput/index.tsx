@@ -1,10 +1,11 @@
-import { Pressable, Text, TextInput, TextInputProps, View } from "react-native";
 import { SolarIcon } from "react-native-solar-icons";
+import { Pressable, Text, TextInput, TextInputProps, View } from "react-native";
 import type { OutlineIconName } from "react-native-solar-icons/dist/icons/index.d.ts";
 
-import { appInputVariants, AppInputVariantsProps } from "./input.variants";
-import { useAppInputViewModel } from "./useAppInputViewModel";
 import { colors } from "../../../styles/colors";
+
+import { useAppInputViewModel } from "./useAppInputViewModel";
+import { appInputVariants, AppInputVariantsProps } from "./input.variants";
 
 type Props = TextInputProps &
   AppInputVariantsProps & {
@@ -75,6 +76,8 @@ export function AppInput({
           className={styles.input()}
           onBlur={handleBlur}
           onFocus={handleFocus}
+          onChangeText={handleTextChange}
+          value={value}
           placeholderTextColor={colors.gray[200]}
           {...rest}
         />
