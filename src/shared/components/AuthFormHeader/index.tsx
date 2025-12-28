@@ -9,7 +9,7 @@ type Props = {
 
 export function AuthFormHeader({ title, subtitle }: Readonly<Props>) {
   return (
-    <View className="items-center gap-8">
+    <View className="mb-14 items-center gap-8">
       <Image source={logo} resizeMode="contain" />
 
       <View className="items-center gap-2">
