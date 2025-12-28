@@ -91,6 +91,18 @@ export function AppInput({
           />
         )}
       </Pressable>
+
+      {error && (
+        <View className="flex-row items-center gap-1">
+          <SolarIcon
+            name="InfoCircle"
+            size={16}
+            color={colors.danger}
+            type="outline"
+          />
+          <Text className={styles.error()}>{error}</Text>
+        </View>
+      )}
     </View>
   );
 }

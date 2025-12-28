@@ -28,6 +28,7 @@ export function RegisterView({
         placeholder="mail@exemplo.br"
         value={email}
         onChangeText={setEmail}
+        error="E-mail inválido"
       />
 
       <AppInput
