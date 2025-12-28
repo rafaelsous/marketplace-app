@@ -1,7 +1,9 @@
+import { router } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 
 import { useRegisterViewModel } from "./useRegister.viewModel";
 import { AppInputController } from "@/shared/components/AppInputController";
+import { AuthFormHeader } from "@/shared/components/AuthFormHeader";
 
 export function RegisterView({
   onSubmit,
@@ -9,8 +11,10 @@ export function RegisterView({
 }: Readonly<ReturnType<typeof useRegisterViewModel>>) {
   return (
     <View className="flex-1 justify-center gap-4">
-      <Text>Crie sua conta</Text>
-      <Text>Informe os seus dados pessoais e de acesso</Text>
+      <AuthFormHeader
+        title="Crie sua conta"
+        subtitle="Informe os seus dados pessoais e de acesso"
+      />
 
       <AppInputController
         control={control}
@@ -56,6 +60,13 @@ export function RegisterView({
 
       <TouchableOpacity activeOpacity={0.7} onPress={onSubmit}>
         <Text>Cadastrar</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() => router.push("login")}
+      >
+        <Text>Acessar</Text>
       </TouchableOpacity>
     </View>
   );
