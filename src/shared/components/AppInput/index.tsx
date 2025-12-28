@@ -14,7 +14,7 @@ import { colors } from "@/styles/colors";
 import { useAppInputViewModel } from "./useAppInputViewModel";
 import { appInputVariants, AppInputVariantsProps } from "./input.variants";
 
-type Props = TextInputProps &
+export type AppInputProps = TextInputProps &
   AppInputVariantsProps & {
     label?: string;
     leftIcon?: OutlineIconName;
@@ -39,7 +39,7 @@ export function AppInput({
   mask,
   error,
   ...rest
-}: Props) {
+}: AppInputProps) {
   const {
     getIconColor,
     handleBlur,
