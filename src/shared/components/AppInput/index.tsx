@@ -50,7 +50,6 @@ export function AppInput({
     handleTextChange,
     isFocused,
   } = useAppInputViewModel({
-    error,
     onFocus,
     onBlur,
     isError: !!error,
@@ -63,6 +62,8 @@ export function AppInput({
 
   const styles = appInputVariants({
     isFocused,
+    isDisabled,
+    isError: !!error,
   });
 
   return (
