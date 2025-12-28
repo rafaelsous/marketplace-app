@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 
-import * as authService from "../../services/auth.service";
-import { RegisterRequest } from "../../interfaces/http/register";
+import * as authService from "@/shared/services/auth.service";
+import { RegisterRequest } from "@/shared/interfaces/http/register";
 
 export function useRegisterMutation() {
   const mutation = useMutation({

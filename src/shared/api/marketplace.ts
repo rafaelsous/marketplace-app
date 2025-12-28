@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-import { getApiUrl } from "../../config/api";
+import { getApiUrl } from "@/config/api";
 
 const baseURL = getApiUrl();
 

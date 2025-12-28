@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { BlurEvent, FocusEvent, TextInput } from "react-native";
 
-import { colors } from "../../../styles/colors";
+import { colors } from "@/styles/colors";
 
 type Props = {
   isError?: boolean;

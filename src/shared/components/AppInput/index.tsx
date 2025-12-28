@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import type { OutlineIconName } from "react-native-solar-icons/dist/icons/index.d.ts";
 
-import { colors } from "../../../styles/colors";
+import { colors } from "@/styles/colors";
 
 import { useAppInputViewModel } from "./useAppInputViewModel";
 import { appInputVariants, AppInputVariantsProps } from "./input.variants";

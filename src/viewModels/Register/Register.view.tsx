@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
-import { AppInput } from "../../shared/components/AppInput";
+import { AppInput } from "@/shared/components/AppInput";
 import { useRegisterViewModel } from "./useRegister.viewModel";
 
 export function RegisterView({
