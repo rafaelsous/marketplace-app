@@ -1,5 +1,12 @@
 import { SolarIcon } from "react-native-solar-icons";
-import { Pressable, Text, TextInput, TextInputProps, View } from "react-native";
+import {
+  Pressable,
+  Text,
+  TextInput,
+  TextInputProps,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import type { OutlineIconName } from "react-native-solar-icons/dist/icons/index.d.ts";
 
 import { colors } from "../../../styles/colors";
@@ -79,8 +86,24 @@ export function AppInput({
           onChangeText={handleTextChange}
           value={value}
           placeholderTextColor={colors.gray[200]}
+          secureTextEntry={showPassword}
           {...rest}
         />
+
+        {secureTextEntry && (
+          <TouchableOpacity
+            hitSlop={16}
+            activeOpacity={0.7}
+            onPress={handleToggleShowPassword}
+          >
+            <SolarIcon
+              name={showPassword ? "Eye" : "EyeClosed"}
+              size={24}
+              color={colors.gray[300]}
+              type="outline"
+            />
+          </TouchableOpacity>
+        )}
 
         {rightIcon && (
           <SolarIcon

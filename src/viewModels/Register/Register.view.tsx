@@ -35,12 +35,14 @@ export function RegisterView({
         label="Senha"
         leftIcon="KeyMinimalisticSquare2"
         placeholder="Sua senha"
+        secureTextEntry
       />
 
       <AppInput
         label="Confirmar senha"
         leftIcon="KeyMinimalisticSquare2"
         placeholder="Confirme a senha"
+        secureTextEntry
       />
 
       <TouchableOpacity activeOpacity={0.7} onPress={onSubmit}>
