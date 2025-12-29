@@ -13,7 +13,7 @@ export function RegisterView({
 }: Readonly<ReturnType<typeof useRegisterViewModel>>) {
   return (
     <KeyboardContainer>
-      <ScrollView className="px-[40px] flex-1 gap-4">
+      <ScrollView className="px-[40px] flex-1">
         <AuthFormHeader
           title="Crie sua conta"
           subtitle="Informe os seus dados pessoais e de acesso"
@@ -34,6 +34,13 @@ export function RegisterView({
           leftIcon="Phone"
           placeholder="(00) 00000-0000"
         />
+
+        <Text
+          style={{ marginTop: 24 }}
+          className="text-base text-gray-500 font-bold"
+        >
+          Acesso
+        </Text>
 
         <AppInputController
           control={control}
