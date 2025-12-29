@@ -9,6 +9,7 @@ import { AppInputController } from "@/shared/components/AppInputController";
 
 export function LoginView({
   control,
+  onSubmit,
 }: Readonly<ReturnType<typeof useLoginViewModel>>) {
   return (
     <KeyboardContainer>
@@ -24,6 +25,7 @@ export function LoginView({
           label="E-mail"
           leftIcon="Letter"
           placeholder="mail@exemplo.br"
+          keyboardType="email-address"
         />
 
         <AppInputController
@@ -34,6 +36,10 @@ export function LoginView({
           placeholder="Sua senha"
           secureTextEntry
         />
+
+        <TouchableOpacity activeOpacity={0.7} onPress={onSubmit}>
+          <Text>Acessar</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity
           activeOpacity={0.7}

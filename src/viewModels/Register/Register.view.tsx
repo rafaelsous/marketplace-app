@@ -48,6 +48,7 @@ export function RegisterView({
           label="E-mail"
           leftIcon="Letter"
           placeholder="mail@exemplo.br"
+          keyboardType="email-address"
         />
 
         <AppInputController
