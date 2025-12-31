@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, View } from "react-native";
 
 import { useLoginViewModel } from "./useLogin.viewModel";
 
@@ -14,40 +14,49 @@ export function LoginView({
 }: Readonly<ReturnType<typeof useLoginViewModel>>) {
   return (
     <KeyboardContainer>
-      <View className="px-[40px] flex-1 justify-center gap-4">
-        <AuthFormHeader
-          title="Acesse sua conta"
-          subtitle="Informe seu e-mail e senha para entrar"
-        />
+      <View className="px-[40px] flex-1 items-center justify-center gap-4">
+        <View className="w-full flex-1 justify-center">
+          <AuthFormHeader
+            title="Acesse sua conta"
+            subtitle="Informe seu e-mail e senha para entrar"
+          />
 
-        <AppInputController
-          control={control}
-          name="email"
-          label="E-mail"
-          leftIcon="Letter"
-          placeholder="mail@exemplo.br"
-          keyboardType="email-address"
-        />
+          <AppInputController
+            control={control}
+            name="email"
+            label="E-mail"
+            leftIcon="Letter"
+            placeholder="mail@exemplo.br"
+            keyboardType="email-address"
+          />
 
-        <AppInputController
-          control={control}
-          name="password"
-          label="Senha"
-          leftIcon="KeyMinimalisticSquare2"
-          placeholder="Sua senha"
-          secureTextEntry
-        />
+          <AppInputController
+            control={control}
+            name="password"
+            label="Senha"
+            leftIcon="KeyMinimalisticSquare2"
+            placeholder="Sua senha"
+            secureTextEntry
+          />
 
-        <AppButton variant="outlined" rightIcon="ArrowRight" onPress={onSubmit}>
-          Acessar
-        </AppButton>
+          <AppButton className="mt-6" rightIcon="ArrowRight" onPress={onSubmit}>
+            Acessar
+          </AppButton>
+        </View>
 
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => router.push("register")}
-        >
-          <Text>Cadastar</Text>
-        </TouchableOpacity>
+        <View className="pb-16 flex-2 self-end gap-5">
+          <Text className="text-base text-gray-300">
+            Ainda não tem uma conta?
+          </Text>
+
+          <AppButton
+            variant="outlined"
+            rightIcon="ArrowRight"
+            onPress={() => router.push("register")}
+          >
+            Cadastar
+          </AppButton>
+        </View>
       </View>
     </KeyboardContainer>
   );

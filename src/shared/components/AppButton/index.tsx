@@ -26,6 +26,7 @@ export function AppButton({
   isLoading,
   isDisabled,
   variant = "filled",
+  className,
   ...rest
 }: Props) {
   const contentColor =
@@ -69,7 +70,11 @@ export function AppButton({
   }
 
   return (
-    <TouchableOpacity activeOpacity={0.7} className={styles.base()} {...rest}>
+    <TouchableOpacity
+      activeOpacity={0.7}
+      className={styles.base({ className })}
+      {...rest}
+    >
       {renderContent()}
     </TouchableOpacity>
   );
