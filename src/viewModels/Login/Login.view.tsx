@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 
 import { useLoginViewModel } from "./useLogin.viewModel";
 
+import { AppButton } from "@/shared/components/AppButton";
 import { AuthFormHeader } from "@/shared/components/AuthFormHeader";
 import { KeyboardContainer } from "@/shared/components/KeyboardContainer";
 import { AppInputController } from "@/shared/components/AppInputController";
@@ -37,9 +38,7 @@ export function LoginView({
           secureTextEntry
         />
 
-        <TouchableOpacity activeOpacity={0.7} onPress={onSubmit}>
-          <Text>Acessar</Text>
-        </TouchableOpacity>
+        <AppButton onPress={onSubmit} />
 
         <TouchableOpacity
           activeOpacity={0.7}
