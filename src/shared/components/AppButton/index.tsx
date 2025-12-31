@@ -14,7 +14,7 @@ export function AppButton({ leftIcon, children, ...rest }: Props) {
 
   return (
     <TouchableOpacity activeOpacity={0.7} className={styles.base()} {...rest}>
-      <Text>{children}</Text>
+      <Text className={styles.text()}>{children}</Text>
     </TouchableOpacity>
   );
 }
