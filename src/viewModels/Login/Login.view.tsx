@@ -38,7 +38,7 @@ export function LoginView({
           secureTextEntry
         />
 
-        <AppButton onPress={onSubmit} />
+        <AppButton onPress={onSubmit}>Acessar</AppButton>
 
         <TouchableOpacity
           activeOpacity={0.7}
