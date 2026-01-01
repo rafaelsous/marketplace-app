@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { RegisterFormData, registerSchema } from "./register.schema";
 
+import { useCamera } from "@/shared/hooks/useCamera";
 import { useAppModal } from "@/shared/hooks/useAppModal";
 import { useUserStore } from "@/shared/store/user-store";
 import { useRegisterMutation } from "@/shared/queries/auth/user-register.mutation";
@@ -11,6 +12,7 @@ export function useRegisterViewModel() {
   const userRegisterMutation = useRegisterMutation();
   const { setSession } = useUserStore();
   const modals = useAppModal();
+  const { openCamera } = useCamera({});
 
   function handleSelectAvatar() {
     modals.showSelection({
@@ -27,7 +29,7 @@ export function useRegisterViewModel() {
           text: "Câmera",
           icon: "Camera",
           variant: "primary",
-          onPress: () => alert("Câmera..."),
+          onPress: openCamera,
         },
       ],
     });

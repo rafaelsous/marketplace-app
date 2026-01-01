@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import ToastManager from "toastify-react-native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import "../styles/global.css";
@@ -17,6 +18,8 @@ export default function RootLayout() {
       </Stack>
 
       <AppModal />
+
+      <ToastManager useModal={false} />
     </QueryClientProvider>
   );
 }
