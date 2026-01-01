@@ -3,9 +3,12 @@ import { OutlineIconName } from "react-native-solar-icons/dist/icons";
 
 import { useModalStore } from "../store/modal-store";
 
-import { SelectionModal } from "../components/Modals/SelectionModal";
+import {
+  SelectionModal,
+  SelectionModalProps,
+} from "../components/Modals/SelectionModal";
 
-interface SelectionOption {
+export interface SelectionOption {
   text: string;
   icon: OutlineIconName;
   onPress: () => void;
@@ -15,12 +18,22 @@ interface SelectionOption {
 export function useAppModal() {
   const { open, close } = useModalStore();
 
-  function showSelection(config: {
+  function showSelection({
+    title,
+    message,
+    options,
+  }: {
     title: string;
     message?: string;
     options: SelectionOption[];
   }) {
-    open(createElement(SelectionModal));
+    open(
+      createElement(SelectionModal, {
+        title,
+        message,
+        options,
+      } as SelectionModalProps)
+    );
   }
 
   return { showSelection };

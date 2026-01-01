@@ -1,5 +1,6 @@
 import { router } from "expo-router";
-import { ScrollView, Text, View } from "react-native";
+import { SolarIcon } from "react-native-solar-icons";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 import { useRegisterViewModel } from "./useRegister.viewModel";
 
@@ -11,6 +12,7 @@ import { AppInputController } from "@/shared/components/AppInputController";
 export function RegisterView({
   onSubmit,
   control,
+  handleSelectAvatar,
 }: Readonly<ReturnType<typeof useRegisterViewModel>>) {
   return (
     <KeyboardContainer>
@@ -19,6 +21,10 @@ export function RegisterView({
           title="Crie sua conta"
           subtitle="Informe os seus dados pessoais e de acesso"
         />
+
+        <TouchableOpacity activeOpacity={0.7} onPress={handleSelectAvatar}>
+          <SolarIcon name="CloudUpload" size={32} type="outline" />
+        </TouchableOpacity>
 
         <AppInputController
           control={control}

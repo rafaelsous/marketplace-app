@@ -20,8 +20,8 @@ export const useModalStore = create<ModalStore>((set, get) => ({
   content: null,
   config: {
     animationType: "fade",
-    transparent: false,
-    statusBarTranscent: false,
+    transparent: true,
+    statusBarTranslucent: false,
   },
   open: (content: ReactNode, config?: ModalConfig) => {
     set({

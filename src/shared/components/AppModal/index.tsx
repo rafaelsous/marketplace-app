@@ -13,7 +13,8 @@ export function AppModal() {
     <Modal
       visible={isOpen}
       animationType={config.animationType}
-      transparent={config.statusBarTranslucent}
+      transparent={config.transparent}
+      statusBarTranslucent={config.statusBarTranslucent}
       onRequestClose={close}
     >
       <TouchableWithoutFeedback onPress={close}>
