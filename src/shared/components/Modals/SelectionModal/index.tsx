@@ -1,6 +1,9 @@
-import { SelectionOption } from "@/shared/hooks/useAppModal";
-import { Text, TouchableOpacity, View } from "react-native";
+import clsx from "clsx";
 import { SolarIcon } from "react-native-solar-icons";
+import { Text, TouchableOpacity, View } from "react-native";
+
+import { SelectionOption, SelectionVariant } from "@/shared/hooks/useAppModal";
+import { colors } from "@/styles/colors";
 
 export interface SelectionModalProps {
   title: string;
@@ -13,23 +16,39 @@ export function SelectionModal({
   message,
   options,
 }: Readonly<SelectionModalProps>) {
+  const getButtonClass = (variant: SelectionVariant) =>
+    clsx(
+      "w-full px-4 py-3 flex-row items-center justify-center gap-2 rounded-lg",
+      {
+        "bg-danger": variant === "danger",
+        "bg-purple-base": variant === "primary",
+        "bg-blue-dark": variant === "secondary",
+      }
+    );
+
   return (
     <View className="w-[85%] max-w-sm mx-auto p-6 bg-white rounded-xl shadow-2xl">
-      <Text>{title}</Text>
+      <View className="mb-6 items-center gap-3">
+        <Text className="text-lg text-gray-900 font-bold">{title}</Text>
 
-      {message && <Text>{message}</Text>}
+        {message && (
+          <Text className="text-base text-gray-600 leading-6">{message}</Text>
+        )}
+      </View>
 
-      <View>
+      <View className="gap-3">
         {options.map((option) => (
           <TouchableOpacity
             key={option.text}
             activeOpacity={0.7}
             hitSlop={16}
-            className="w-full px-4 py-3 flex-row items-center justify-center gap-2 rounded-lg"
+            className={getButtonClass(option.variant ?? "primary")}
             onPress={option.onPress}
           >
-            {option.icon && <SolarIcon name={option.icon} size={20} />}
-            <Text>{option.text}</Text>
+            {option.icon && (
+              <SolarIcon name={option.icon} size={20} color={colors.white} />
+            )}
+            <Text className="text-white font-semibold">{option.text}</Text>
           </TouchableOpacity>
         ))}
       </View>

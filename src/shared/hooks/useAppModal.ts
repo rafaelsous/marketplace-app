@@ -8,11 +8,13 @@ import {
   SelectionModalProps,
 } from "../components/Modals/SelectionModal";
 
+export type SelectionVariant = "primary" | "secondary" | "danger";
+
 export interface SelectionOption {
   text: string;
   icon: OutlineIconName;
   onPress: () => void;
-  variant?: "primary" | "secondary" | "danger";
+  variant?: SelectionVariant;
 }
 
 export function useAppModal() {
