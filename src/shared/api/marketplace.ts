@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from "axios";
 
 import { getApiUrl } from "@/config/api";
 
-const baseURL = getApiUrl();
+export const baseURL = getApiUrl();
 
 export class MarketPlaceApiClient {
   private readonly instance: AxiosInstance;
