@@ -3,42 +3,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { RegisterFormData, registerSchema } from "./register.schema";
 
-import { useCamera } from "@/shared/hooks/useCamera";
-import { useGallery } from "@/shared/hooks/useGallery";
-import { useAppModal } from "@/shared/hooks/useAppModal";
 import { useUserStore } from "@/shared/store/user-store";
 import { useRegisterMutation } from "@/shared/queries/auth/user-register.mutation";
+import { useImage } from "@/shared/hooks/useImage";
 
 export function useRegisterViewModel() {
   const userRegisterMutation = useRegisterMutation();
   const { setSession } = useUserStore();
-  const modals = useAppModal();
-  const { openCamera } = useCamera({});
-  const { openGallery } = useGallery({});
+  const { handleSelectImage } = useImage({});
 
-  function handleSelectAvatar() {
-    modals.showSelection({
-      title: "Selecionar foto",
-      message: "Escolha uma opção:",
-      options: [
-        {
-          text: "Galeria",
-          icon: "GalleryWide",
-          variant: "primary",
-          onPress: async () => {
-            const imageUri = await openGallery();
-
-            console.log(imageUri);
-          },
-        },
-        {
-          text: "Câmera",
-          icon: "Camera",
-          variant: "primary",
-          onPress: openCamera,
-        },
-      ],
-    });
+  async function handleSelectAvatar() {
+    await handleSelectImage();
   }
 
   const {
