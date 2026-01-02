@@ -1,6 +1,8 @@
 import { router } from "expo-router";
 import { SolarIcon } from "react-native-solar-icons";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+
+import { colors } from "@/styles/colors";
 
 import { useRegisterViewModel } from "./useRegister.viewModel";
 
@@ -13,6 +15,7 @@ export function RegisterView({
   onSubmit,
   control,
   handleSelectAvatar,
+  avatarUri,
 }: Readonly<ReturnType<typeof useRegisterViewModel>>) {
   return (
     <KeyboardContainer>
@@ -22,8 +25,25 @@ export function RegisterView({
           subtitle="Informe os seus dados pessoais e de acesso"
         />
 
-        <TouchableOpacity activeOpacity={0.7} onPress={handleSelectAvatar}>
-          <SolarIcon name="CloudUpload" size={32} type="outline" />
+        <TouchableOpacity
+          className="w-[120px] h-[120px] mb-8 items-center justify-center self-center rounded-xl bg-shape overflow-hidden"
+          activeOpacity={0.7}
+          onPress={handleSelectAvatar}
+        >
+          {avatarUri ? (
+            <Image
+              source={{ uri: avatarUri }}
+              className="w-[120px] h-[120px] rounde-xl"
+              resizeMode="cover"
+            />
+          ) : (
+            <SolarIcon
+              name="UploadMinimalistic"
+              size={32}
+              type="outline"
+              color={colors["purple-base"]}
+            />
+          )}
         </TouchableOpacity>
 
         <AppInputController

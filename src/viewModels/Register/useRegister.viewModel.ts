@@ -1,12 +1,13 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { CameraType } from "expo-image-picker";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { RegisterFormData, registerSchema } from "./register.schema";
 
+import { useImage } from "@/shared/hooks/useImage";
 import { useUserStore } from "@/shared/store/user-store";
 import { useRegisterMutation } from "@/shared/queries/auth/user-register.mutation";
-import { useImage } from "@/shared/hooks/useImage";
-import { useState } from "react";
 
 export function useRegisterViewModel() {
   const [avatarUri, setAvatarUri] = useState<string | null>(null);
@@ -14,9 +15,8 @@ export function useRegisterViewModel() {
   const { setSession } = useUserStore();
   const { handleSelectImage } = useImage({
     callback: setAvatarUri,
+    cameraType: CameraType.front,
   });
-
-  alert(avatarUri);
 
   async function handleSelectAvatar() {
     await handleSelectImage();
@@ -50,5 +50,5 @@ export function useRegisterViewModel() {
     });
   });
 
-  return { control, errors, onSubmit, handleSelectAvatar };
+  return { control, errors, onSubmit, handleSelectAvatar, avatarUri };
 }
