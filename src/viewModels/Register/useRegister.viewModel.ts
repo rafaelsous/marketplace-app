@@ -6,11 +6,17 @@ import { RegisterFormData, registerSchema } from "./register.schema";
 import { useUserStore } from "@/shared/store/user-store";
 import { useRegisterMutation } from "@/shared/queries/auth/user-register.mutation";
 import { useImage } from "@/shared/hooks/useImage";
+import { useState } from "react";
 
 export function useRegisterViewModel() {
+  const [avatarUri, setAvatarUri] = useState<string | null>(null);
   const userRegisterMutation = useRegisterMutation();
   const { setSession } = useUserStore();
-  const { handleSelectImage } = useImage({});
+  const { handleSelectImage } = useImage({
+    callback: setAvatarUri,
+  });
+
+  alert(avatarUri);
 
   async function handleSelectAvatar() {
     await handleSelectImage();
