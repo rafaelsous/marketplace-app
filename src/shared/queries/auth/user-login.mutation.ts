@@ -1,3 +1,4 @@
+import { Toast } from "toastify-react-native";
 import { useMutation } from "@tanstack/react-query";
 
 import * as authService from "@/shared/services/auth.service";
@@ -14,6 +15,7 @@ export function useLoginMutation() {
     },
     onError: (error) => {
       console.log(error);
+      Toast.error("Erro ao fazer login do usuário", "top");
     },
   });
 
