@@ -106,7 +106,7 @@ export function RegisterView({
           <AppButton
             variant="outlined"
             rightIcon="ArrowRight"
-            onPress={() => router.push("login")}
+            onPress={() => router.push("/(public)/login")}
           >
             Acessar
           </AppButton>

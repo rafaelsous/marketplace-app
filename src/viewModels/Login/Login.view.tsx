@@ -52,7 +52,7 @@ export function LoginView({
           <AppButton
             variant="outlined"
             rightIcon="ArrowRight"
-            onPress={() => router.push("register")}
+            onPress={() => router.push("/(public)/register")}
           >
             Cadastar
           </AppButton>
