@@ -2,6 +2,7 @@ import axios, { AxiosInstance } from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { getApiUrl } from "@/config/api";
+import { useUserStore } from "../store/user-store";
 
 export const baseURL = getApiUrl();
 
@@ -46,6 +47,7 @@ export class MarketPlaceApiClient {
     this.instance.interceptors.response.use(
       (response) => response,
       async (error) => {
+        alert("Caiu no refresh token");
         const originalRequest = error.config;
 
         if (
@@ -99,12 +101,20 @@ export class MarketPlaceApiClient {
         }
 
         if (error.response?.data) {
+          this.handleUnauthorized();
           throw new Error(error.response.data.message);
         } else {
           throw new Error("Falha na requisição");
         }
       }
     );
+  }
+
+  private async handleUnauthorized() {
+    const { logout } = useUserStore.getState();
+
+    delete this.instance.defaults.headers.common["Authorization"];
+    logout();
   }
 }
 
