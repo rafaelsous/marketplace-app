@@ -7,7 +7,7 @@ export const baseURL = getApiUrl();
 
 export class MarketPlaceApiClient {
   private readonly instance: AxiosInstance;
-  private readonly isRefreshing: boolean = false;
+  private isRefreshing: boolean = false;
 
   constructor() {
     this.instance = axios.create({
@@ -40,6 +40,69 @@ export class MarketPlaceApiClient {
       },
       (error) => {
         return Promise.reject(error);
+      }
+    );
+
+    this.instance.interceptors.response.use(
+      (response) => response,
+      async (error) => {
+        const originalRequest = error.config;
+
+        if (
+          error.response?.status === 401 &&
+          error.response.data?.message === "Token expirado" &&
+          !this.isRefreshing
+        ) {
+          this.isRefreshing = true;
+
+          try {
+            const userData = await AsyncStorage.getItem("marketplace-auth");
+
+            if (!userData) {
+              throw new Error("Usuário não autenticado");
+            }
+
+            const {
+              state: { refreshToken },
+            } = JSON.parse(userData);
+
+            if (!refreshToken) {
+              throw new Error("Refresh token não encontrado");
+            }
+
+            const { data: response } = await marketPlaceApiClient.post(
+              "/auth/refresh",
+              {
+                refreshToken,
+              }
+            );
+
+            const currentUserData = JSON.parse(userData);
+
+            currentUserData.state.token = response.token;
+            currentUserData.state.refreshToken = response.refreshToken;
+
+            await AsyncStorage.setItem(
+              "marketplace",
+              JSON.stringify(currentUserData)
+            );
+
+            originalRequest.headers.Authorization = `Bearer ${response.token}`;
+
+            return this.instance(originalRequest);
+          } catch (error) {
+            console.log(error);
+            throw new Error("Sessão expirada. Faça o login novamente");
+          } finally {
+            this.isRefreshing = false;
+          }
+        }
+
+        if (error.response?.data) {
+          throw new Error(error.response.data.message);
+        } else {
+          throw new Error("Falha na requisição");
+        }
       }
     );
   }
