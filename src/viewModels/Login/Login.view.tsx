@@ -25,7 +25,7 @@ export function LoginView({
             control={control}
             name="email"
             label="E-mail"
-            leftIcon="Letter"
+            leftIcon="LetterOutline"
             placeholder="mail@exemplo.br"
             keyboardType="email-address"
           />
@@ -34,12 +34,16 @@ export function LoginView({
             control={control}
             name="password"
             label="Senha"
-            leftIcon="KeyMinimalisticSquare2"
+            leftIcon="KeyMinimalisticSquare2Outline"
             placeholder="Sua senha"
             secureTextEntry
           />
 
-          <AppButton className="mt-6" rightIcon="ArrowRight" onPress={onSubmit}>
+          <AppButton
+            className="mt-6"
+            rightIcon="ArrowRightOutline"
+            onPress={onSubmit}
+          >
             Acessar
           </AppButton>
         </View>
@@ -51,7 +55,7 @@ export function LoginView({
 
           <AppButton
             variant="outlined"
-            rightIcon="ArrowRight"
+            rightIcon="ArrowRightOutline"
             onPress={() => router.push("/(public)/register")}
           >
             Cadastar

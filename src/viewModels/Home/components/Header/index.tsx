@@ -1,9 +1,9 @@
-import { SolarIcon } from "react-native-solar-icons";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
 import { colors } from "@/styles/colors";
 
 import { useUserStore } from "@/shared/store/user-store";
+import { AppIcon } from "@/shared/components/AppIcon";
 
 export function HomeHeader() {
   const { user } = useUserStore();
@@ -18,7 +18,7 @@ export function HomeHeader() {
         />
       ) : (
         <View className="w-[56px] h-[56px] items-center justify-center bg-shape border-2 border-gray-200 rounded-xl">
-          <SolarIcon name="User" size={36} color={colors.gray[300]} />
+          <AppIcon name="UserBold" size={36} color={colors.gray[300]} />
         </View>
       )}
 
@@ -35,11 +35,10 @@ export function HomeHeader() {
           <Text className="text-base text-purple-base font-semibold">
             Ver perfil
           </Text>
-          <SolarIcon
-            name="ArrowRight"
+          <AppIcon
+            name="ArrowRightOutline"
             size={20}
             color={colors["purple-base"]}
-            type="outline"
           />
         </TouchableOpacity>
       </View>

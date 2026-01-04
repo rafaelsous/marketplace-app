@@ -1,5 +1,4 @@
 import { createElement } from "react";
-import { OutlineIconName } from "react-native-solar-icons/dist/icons";
 
 import { useModalStore } from "../store/modal-store";
 
@@ -7,18 +6,19 @@ import {
   SelectionModal,
   SelectionModalProps,
 } from "../components/Modals/SelectionModal";
+import { SolarIconName } from "../components/AppIcon";
 
 export type SelectionVariant = "primary" | "secondary" | "danger";
 
 export interface SelectionOption {
   text: string;
-  icon: OutlineIconName;
+  icon: SolarIconName;
   onPress: () => void;
   variant?: SelectionVariant;
 }
 
 export function useAppModal() {
-  const { open, close } = useModalStore();
+  const { open } = useModalStore();
 
   function showSelection({
     title,

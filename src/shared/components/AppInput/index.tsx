@@ -1,4 +1,3 @@
-import { SolarIcon } from "react-native-solar-icons";
 import {
   Pressable,
   Text,
@@ -7,18 +6,18 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import type { OutlineIconName } from "react-native-solar-icons/dist/icons/index.d.ts";
 
 import { colors } from "@/styles/colors";
 
+import { AppIcon, SolarIconName } from "../AppIcon";
 import { useAppInputViewModel } from "./useAppInputViewModel";
 import { appInputVariants, AppInputVariantsProps } from "./input.variants";
 
 export type AppInputProps = TextInputProps &
   AppInputVariantsProps & {
     label?: string;
-    leftIcon?: OutlineIconName;
-    rightIcon?: OutlineIconName;
+    leftIcon?: SolarIconName;
+    rightIcon?: SolarIconName;
     containerClassName?: string;
     mask?: (value: string) => void | string;
     error?: string;
@@ -72,12 +71,7 @@ export function AppInput({
 
       <Pressable className={`${styles.wrapper()} gap-3`}>
         {leftIcon && (
-          <SolarIcon
-            name={leftIcon}
-            size={22}
-            color={getIconColor()}
-            type="outline"
-          />
+          <AppIcon name={leftIcon} size={22} color={getIconColor()} />
         )}
 
         <TextInput
@@ -97,33 +91,22 @@ export function AppInput({
             activeOpacity={0.7}
             onPress={handleToggleShowPassword}
           >
-            <SolarIcon
-              name={showPassword ? "Eye" : "EyeClosed"}
+            <AppIcon
+              name={showPassword ? "EyeOutline" : "EyeClosedOutline"}
               size={24}
               color={colors.gray[300]}
-              type="outline"
             />
           </TouchableOpacity>
         )}
 
         {rightIcon && (
-          <SolarIcon
-            name={rightIcon}
-            size={22}
-            color={getIconColor()}
-            type="outline"
-          />
+          <AppIcon name={rightIcon} size={22} color={getIconColor()} />
         )}
       </Pressable>
 
       {error && (
         <View className="flex-row items-center gap-1">
-          <SolarIcon
-            name="InfoCircle"
-            size={16}
-            color={colors.danger}
-            type="outline"
-          />
+          <AppIcon name="InfoCircleOutline" size={16} color={colors.danger} />
           <Text className={styles.error()}>{error}</Text>
         </View>
       )}

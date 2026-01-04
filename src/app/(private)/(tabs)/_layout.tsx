@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
-import { SolarIcon } from "react-native-solar-icons";
 
 import { colors } from "@/styles/colors";
+import { AppIcon } from "@/shared/components/AppIcon";
 
 export default function TabsLayout() {
   return (
@@ -20,7 +20,7 @@ export default function TabsLayout() {
           title: "Produtos",
           tabBarActiveTintColor: colors["purple-base"],
           tabBarIcon: ({ color }) => (
-            <SolarIcon name="Shop2" size={20} color={color} type="outline" />
+            <AppIcon name="Shop2Outline" size={20} color={color} />
           ),
           tabBarLabelStyle: {
             marginTop: 4,
@@ -36,12 +36,7 @@ export default function TabsLayout() {
           title: "Pedidos",
           tabBarActiveTintColor: colors["purple-base"],
           tabBarIcon: ({ color }) => (
-            <SolarIcon
-              name="ClipboardText"
-              size={20}
-              color={color}
-              type="outline"
-            />
+            <AppIcon name="ClipboardTextOutline" size={20} color={color} />
           ),
           tabBarLabelStyle: {
             marginTop: 4,
@@ -57,12 +52,7 @@ export default function TabsLayout() {
           title: "Carrinho",
           tabBarActiveTintColor: colors["purple-base"],
           tabBarIcon: ({ color }) => (
-            <SolarIcon
-              name="CartLarge2"
-              size={25}
-              color={color}
-              type="outline"
-            />
+            <AppIcon name="CartLarge2Outline" size={25} color={color} />
           ),
           tabBarLabelStyle: {
             marginTop: 4,

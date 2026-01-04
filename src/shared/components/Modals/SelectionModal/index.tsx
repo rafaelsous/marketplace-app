@@ -1,9 +1,10 @@
 import clsx from "clsx";
-import { SolarIcon } from "react-native-solar-icons";
 import { Text, TouchableOpacity, View } from "react-native";
 
-import { SelectionOption, SelectionVariant } from "@/shared/hooks/useAppModal";
 import { colors } from "@/styles/colors";
+
+import { AppIcon } from "@/shared/components/AppIcon";
+import { SelectionOption, SelectionVariant } from "@/shared/hooks/useAppModal";
 
 export interface SelectionModalProps {
   title: string;
@@ -46,7 +47,7 @@ export function SelectionModal({
             onPress={option.onPress}
           >
             {option.icon && (
-              <SolarIcon name={option.icon} size={20} color={colors.white} />
+              <AppIcon name={option.icon} size={20} color={colors.white} />
             )}
             <Text className="text-white font-semibold">{option.text}</Text>
           </TouchableOpacity>

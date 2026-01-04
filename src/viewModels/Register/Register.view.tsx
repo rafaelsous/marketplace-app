@@ -1,11 +1,11 @@
 import { router } from "expo-router";
-import { SolarIcon } from "react-native-solar-icons";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 import { colors } from "@/styles/colors";
 
 import { useRegisterViewModel } from "./useRegister.viewModel";
 
+import { AppIcon } from "@/shared/components/AppIcon";
 import { AppButton } from "@/shared/components/AppButton";
 import { AuthFormHeader } from "@/shared/components/AuthFormHeader";
 import { KeyboardContainer } from "@/shared/components/KeyboardContainer";
@@ -37,10 +37,9 @@ export function RegisterView({
               resizeMode="cover"
             />
           ) : (
-            <SolarIcon
-              name="UploadMinimalistic"
+            <AppIcon
+              name="UploadMinimalisticOutline"
               size={32}
-              type="outline"
               color={colors["purple-base"]}
             />
           )}
@@ -50,7 +49,7 @@ export function RegisterView({
           control={control}
           name="name"
           label="Nome"
-          leftIcon="User"
+          leftIcon="UserOutline"
           placeholder="Seu nome completo"
         />
 
@@ -58,7 +57,7 @@ export function RegisterView({
           control={control}
           name="phone"
           label="Telefone"
-          leftIcon="Phone"
+          leftIcon="PhoneOutline"
           placeholder="(00) 00000-0000"
         />
 
@@ -73,7 +72,7 @@ export function RegisterView({
           control={control}
           name="email"
           label="E-mail"
-          leftIcon="Letter"
+          leftIcon="LetterOutline"
           placeholder="mail@exemplo.br"
           keyboardType="email-address"
         />
@@ -82,7 +81,7 @@ export function RegisterView({
           control={control}
           name="password"
           label="Senha"
-          leftIcon="KeyMinimalisticSquare2"
+          leftIcon="KeyMinimalisticSquare2Outline"
           placeholder="Sua senha"
           secureTextEntry
         />
@@ -91,12 +90,16 @@ export function RegisterView({
           control={control}
           name="passwordConfirm"
           label="Confirmar senha"
-          leftIcon="KeyMinimalisticSquare2"
+          leftIcon="KeyMinimalisticSquare2Outline"
           placeholder="Confirme a senha"
           secureTextEntry
         />
 
-        <AppButton className="mt-6" rightIcon="ArrowRight" onPress={onSubmit}>
+        <AppButton
+          className="mt-6"
+          rightIcon="ArrowRightOutline"
+          onPress={onSubmit}
+        >
           Cadastrar
         </AppButton>
 
@@ -105,7 +108,7 @@ export function RegisterView({
 
           <AppButton
             variant="outlined"
-            rightIcon="ArrowRight"
+            rightIcon="ArrowRightOutline"
             onPress={() => router.push("/(public)/login")}
           >
             Acessar

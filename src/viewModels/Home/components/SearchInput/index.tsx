@@ -1,8 +1,8 @@
-import { SolarIcon } from "react-native-solar-icons";
 import { Text, TouchableOpacity, View } from "react-native";
 
 import { colors } from "@/styles/colors";
 
+import { AppIcon } from "@/shared/components/AppIcon";
 import { AppInput } from "@/shared/components/AppInput";
 
 export function SearchInput() {
@@ -13,7 +13,7 @@ export function SearchInput() {
       <View className="flex-row gap-4">
         <View className="flex-1">
           <AppInput
-            leftIcon="Magnifer"
+            leftIcon="MagniferOutline"
             placeholder="Pesquisar"
             containerClassName="m-0  p-0 flex-1 text-lg"
           />
@@ -23,11 +23,10 @@ export function SearchInput() {
           activeOpacity={0.7}
           className="w-[48px] h-[48px] items-center justify-center self-end border border-purple-base rounded-xl"
         >
-          <SolarIcon
-            name="Filter"
+          <AppIcon
+            name="FilterOutline"
             size={24}
             color={colors["purple-base"]}
-            type="outline"
           />
         </TouchableOpacity>
       </View>

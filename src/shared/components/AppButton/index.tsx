@@ -4,17 +4,16 @@ import {
   TouchableOpacity,
   TouchableOpacityProps,
 } from "react-native";
-import { SolarIcon } from "react-native-solar-icons";
-import { OutlineIconName } from "react-native-solar-icons/dist/icons";
 
 import { colors } from "@/styles/colors";
 
+import { AppIcon, SolarIconName } from "../AppIcon";
 import { buttonVariants, ButtonVariantsProps } from "./button.variants";
 
 type Props = TouchableOpacityProps &
   ButtonVariantsProps & {
-    leftIcon?: OutlineIconName;
-    rightIcon?: OutlineIconName;
+    leftIcon?: SolarIconName;
+    rightIcon?: SolarIconName;
     children: string;
   };
 
@@ -46,24 +45,12 @@ export function AppButton({
 
     return (
       <>
-        {leftIcon && (
-          <SolarIcon
-            name={leftIcon}
-            size={22}
-            color={contentColor}
-            type="outline"
-          />
-        )}
+        {leftIcon && <AppIcon name={leftIcon} size={22} color={contentColor} />}
 
         <Text className={styles.text()}>{children}</Text>
 
         {rightIcon && (
-          <SolarIcon
-            name={rightIcon}
-            size={22}
-            color={contentColor}
-            type="outline"
-          />
+          <AppIcon name={rightIcon} size={22} color={contentColor} />
         )}
       </>
     );
