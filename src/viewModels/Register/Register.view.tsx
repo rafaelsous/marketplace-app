@@ -59,6 +59,7 @@ export function RegisterView({
           label="Telefone"
           leftIcon="PhoneOutline"
           placeholder="(00) 00000-0000"
+          keyboardType="phone-pad"
         />
 
         <Text

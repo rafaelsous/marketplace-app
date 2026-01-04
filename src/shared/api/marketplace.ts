@@ -47,7 +47,6 @@ export class MarketPlaceApiClient {
     this.instance.interceptors.response.use(
       (response) => response,
       async (error) => {
-        alert("Caiu no refresh token");
         const originalRequest = error.config;
 
         if (

@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 
 import { colors } from "@/styles/colors";
 
-import { AppIcon } from "@/shared/components/AppIcon";
+import { AppIcon } from "../../AppIcon";
 import { SelectionOption, SelectionVariant } from "@/shared/hooks/useAppModal";
 
 export interface SelectionModalProps {

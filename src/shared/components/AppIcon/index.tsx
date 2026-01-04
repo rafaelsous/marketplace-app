@@ -17,7 +17,12 @@ export function AppIcon({
   size,
   color = colors.gray[500],
 }: Readonly<AppIconProps>) {
-  const SolarIcon = SolarIcons[name] as ComponentType<SvgProps>;
+  const SolarIcon = SolarIcons[name] as ComponentType<SvgProps> | undefined;
+
+  if (!SolarIcon) {
+    console.warn(`[AppIcon] Ícone não encontrado: ${name}`);
+    return null;
+  }
 
   return <SolarIcon width={size} height={size} color={color} />;
 }

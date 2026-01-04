@@ -32,7 +32,7 @@ export function useImage({ callback, ...pickerOptions }: UseImageParams) {
       options: [
         {
           text: "Galeria",
-          icon: "GalleryWide",
+          icon: "GalleryWideOutline",
           variant: "primary",
           onPress: async () => {
             const imageUri = await openGallery();
@@ -41,7 +41,7 @@ export function useImage({ callback, ...pickerOptions }: UseImageParams) {
         },
         {
           text: "Câmera",
-          icon: "Camera",
+          icon: "CameraOutline",
           variant: "primary",
           onPress: async () => {
             const imageUri = await openCamera();
