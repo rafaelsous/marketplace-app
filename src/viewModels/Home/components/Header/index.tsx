@@ -5,7 +5,7 @@ import { colors } from "@/styles/colors";
 
 import { useUserStore } from "@/shared/store/user-store";
 
-export function Header() {
+export function HomeHeader() {
   const { user } = useUserStore();
 
   return (

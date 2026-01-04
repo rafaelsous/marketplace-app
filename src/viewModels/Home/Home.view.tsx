@@ -1,9 +1,10 @@
-import { FlatList, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { FlatList, Text, TouchableOpacity } from "react-native";
 
 import { useUserStore } from "@/shared/store/user-store";
 
-import { Header } from "./components/Header";
+import { HomeHeader } from "./components/Header";
+import { SearchInput } from "./components/SearchInput";
 
 export function HomeView() {
   const { logout } = useUserStore();
@@ -13,7 +14,13 @@ export function HomeView() {
       <FlatList
         data={[]}
         renderItem={() => <></>}
-        ListHeaderComponent={() => <Header />}
+        ListHeaderComponent={() => (
+          <>
+            <HomeHeader />
+            <SearchInput />
+          </>
+        )}
+        ListHeaderComponentClassName="gap-8"
         contentContainerClassName="px-4 pb-[120px]"
       />
 
