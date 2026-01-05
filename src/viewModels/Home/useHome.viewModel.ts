@@ -34,5 +34,6 @@ export function useHomeViewModel() {
     isLoading,
     hasNextPage,
     isFetchingNextPage,
+    isRefetching,
   };
 }

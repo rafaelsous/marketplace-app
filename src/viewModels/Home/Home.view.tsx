@@ -1,9 +1,10 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FlatList, Text, TouchableOpacity } from "react-native";
+import { FlatList, RefreshControl, Text, TouchableOpacity } from "react-native";
 
-import { useUserStore } from "@/shared/store/user-store";
+import { colors } from "@/styles/colors";
 
 import { useHomeViewModel } from "./useHome.viewModel";
+import { useUserStore } from "@/shared/store/user-store";
 
 import { Footer } from "./components/Footer";
 import { HomeHeader } from "./components/Header";
@@ -16,6 +17,8 @@ export function HomeView({
   hasNextPage,
   isLoading,
   isFetchingNextPage,
+  handleRefresh,
+  isRefetching,
 }: Readonly<ReturnType<typeof useHomeViewModel>>) {
   const { logout } = useUserStore();
 
@@ -27,20 +30,28 @@ export function HomeView({
         numColumns={2}
         columnWrapperClassName="justify-between"
         renderItem={({ item }) => <ProductCard product={item} />}
-        onEndReached={handleEndReached}
         ListHeaderComponent={() => (
           <>
             <HomeHeader />
             <SearchInput />
           </>
         )}
-        ListHeaderComponentClassName="gap-8"
         ListFooterComponent={
           <Footer
             isLoading={hasNextPage && Boolean(isLoading || isFetchingNextPage)}
           />
         }
+        onEndReached={handleEndReached}
+        ListHeaderComponentClassName="gap-8"
         contentContainerClassName="px-4 pb-[120px]"
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefetching}
+            colors={[colors["purple-base"]]}
+            tintColor={colors["purple-base"]}
+            onRefresh={handleRefresh}
+          />
+        }
       />
 
       <TouchableOpacity onPress={logout} className="pb-16 self-center">
