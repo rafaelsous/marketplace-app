@@ -3,20 +3,23 @@ import { FlatList, Text, TouchableOpacity } from "react-native";
 
 import { useUserStore } from "@/shared/store/user-store";
 
-import { productList } from "@/shared/mocks/products-data";
-
 import { HomeHeader } from "./components/Header";
 import { SearchInput } from "./components/SearchInput";
 import { ProductCard } from "./components/ProductCard";
+import { useHomeViewModel } from "./useHome.viewModel";
 
-export function HomeView() {
+export function HomeView({
+  products,
+}: Readonly<ReturnType<typeof useHomeViewModel>>) {
   const { logout } = useUserStore();
 
   return (
     <SafeAreaView edges={["top"]} className="flex-1 gap-4">
       <FlatList
-        data={productList}
+        data={products}
         keyExtractor={({ id }) => `product-list-item-${id}`}
+        numColumns={2}
+        columnWrapperClassName="justify-between"
         renderItem={({ item }) => <ProductCard product={item} />}
         ListHeaderComponent={() => (
           <>

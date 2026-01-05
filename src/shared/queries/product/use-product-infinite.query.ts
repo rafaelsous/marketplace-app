@@ -37,8 +37,10 @@ export function useProductInfinitQuery() {
     queryKey: ["products"],
   });
 
+  const products = data?.pages.flatMap((page) => page.data);
+
   return {
-    data,
+    products,
     error,
     fetchNextPage,
     hasNextPage,
