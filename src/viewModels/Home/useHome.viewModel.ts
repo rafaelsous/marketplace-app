@@ -26,5 +26,13 @@ export function useHomeViewModel() {
     await refetch();
   }
 
-  return { handleLoadMore, handleRefresh, products, handleEndReached };
+  return {
+    handleLoadMore,
+    handleRefresh,
+    products,
+    handleEndReached,
+    isLoading,
+    hasNextPage,
+    isFetchingNextPage,
+  };
 }

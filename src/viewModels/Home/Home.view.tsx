@@ -3,14 +3,19 @@ import { FlatList, Text, TouchableOpacity } from "react-native";
 
 import { useUserStore } from "@/shared/store/user-store";
 
+import { useHomeViewModel } from "./useHome.viewModel";
+
+import { Footer } from "./components/Footer";
 import { HomeHeader } from "./components/Header";
 import { SearchInput } from "./components/SearchInput";
 import { ProductCard } from "./components/ProductCard";
-import { useHomeViewModel } from "./useHome.viewModel";
 
 export function HomeView({
   products,
   handleEndReached,
+  hasNextPage,
+  isLoading,
+  isFetchingNextPage,
 }: Readonly<ReturnType<typeof useHomeViewModel>>) {
   const { logout } = useUserStore();
 
@@ -30,6 +35,11 @@ export function HomeView({
           </>
         )}
         ListHeaderComponentClassName="gap-8"
+        ListFooterComponent={
+          <Footer
+            isLoading={hasNextPage && Boolean(isLoading || isFetchingNextPage)}
+          />
+        }
         contentContainerClassName="px-4 pb-[120px]"
       />
 
