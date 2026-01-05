@@ -10,6 +10,7 @@ import { useHomeViewModel } from "./useHome.viewModel";
 
 export function HomeView({
   products,
+  handleEndReached,
 }: Readonly<ReturnType<typeof useHomeViewModel>>) {
   const { logout } = useUserStore();
 
@@ -21,6 +22,7 @@ export function HomeView({
         numColumns={2}
         columnWrapperClassName="justify-between"
         renderItem={({ item }) => <ProductCard product={item} />}
+        onEndReached={handleEndReached}
         ListHeaderComponent={() => (
           <>
             <HomeHeader />

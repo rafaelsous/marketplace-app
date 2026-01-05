@@ -35,6 +35,7 @@ export function useProductInfinitQuery() {
     },
     initialPageParam: 1,
     queryKey: ["products"],
+    staleTime: 1000 * 60 * 5,
   });
 
   const products = data?.pages.flatMap((page) => page.data);

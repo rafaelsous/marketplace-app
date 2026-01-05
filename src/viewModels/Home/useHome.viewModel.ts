@@ -18,9 +18,13 @@ export function useHomeViewModel() {
     }
   }
 
+  function handleEndReached() {
+    handleLoadMore();
+  }
+
   async function handleRefresh() {
     await refetch();
   }
 
-  return { handleLoadMore, handleRefresh, products };
+  return { handleLoadMore, handleRefresh, products, handleEndReached };
 }
