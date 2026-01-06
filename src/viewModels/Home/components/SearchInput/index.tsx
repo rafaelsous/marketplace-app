@@ -2,10 +2,14 @@ import { Text, TouchableOpacity, View } from "react-native";
 
 import { colors } from "@/styles/colors";
 
+import { useBottomSheetStore } from "@/shared/store/bottomsheet-store";
+
 import { AppIcon } from "@/shared/components/AppIcon";
 import { AppInput } from "@/shared/components/AppInput";
 
 export function SearchInput() {
+  const { open } = useBottomSheetStore();
+
   return (
     <View className="gap-1">
       <Text className="text-2xl font-bold">Explore produtos</Text>
@@ -22,6 +26,11 @@ export function SearchInput() {
         <TouchableOpacity
           activeOpacity={0.7}
           className="w-[48px] h-[48px] items-center justify-center self-end border border-purple-base rounded-xl"
+          onPress={() => {
+            open({
+              content: <Text>Bottom sheet content</Text>,
+            });
+          }}
         >
           <AppIcon
             name="FilterOutline"
