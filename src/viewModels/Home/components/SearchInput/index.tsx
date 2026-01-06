@@ -6,6 +6,7 @@ import { useBottomSheetStore } from "@/shared/store/bottomsheet-store";
 
 import { AppIcon } from "@/shared/components/AppIcon";
 import { AppInput } from "@/shared/components/AppInput";
+import { Filter } from "../Filter";
 
 export function SearchInput() {
   const { open } = useBottomSheetStore();
@@ -28,7 +29,7 @@ export function SearchInput() {
           className="w-[48px] h-[48px] items-center justify-center self-end border border-purple-base rounded-xl"
           onPress={() => {
             open({
-              content: <Text>Bottom sheet content</Text>,
+              content: <Filter />,
             });
           }}
         >
