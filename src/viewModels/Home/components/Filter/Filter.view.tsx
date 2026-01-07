@@ -2,13 +2,20 @@ import { Text, TouchableOpacity, View } from "react-native";
 
 import { colors } from "@/styles/colors";
 
-import { AppIcon } from "@/shared/components/AppIcon";
+import { useFilterViewModel } from "./useFilter.viewModel";
 import { useBottomSheetStore } from "@/shared/store/bottomsheet-store";
+
+import { AppIcon } from "@/shared/components/AppIcon";
 import { AppInput } from "@/shared/components/AppInput";
 import { AppButton } from "@/shared/components/AppButton";
 
-export function FilterView() {
+export function FilterView({
+  productCategories,
+  isLoading,
+}: Readonly<ReturnType<typeof useFilterViewModel>>) {
   const { close } = useBottomSheetStore();
+
+  console.log(productCategories);
 
   return (
     <View className="p-4 px-6 gap-6">
