@@ -67,7 +67,7 @@ export function AppInput({
 
   return (
     <View className={styles.container({ className: containerClassName })}>
-      <Text className={styles.label()}>{label}</Text>
+      {label && <Text className={styles.label()}>{label}</Text>}
 
       <Pressable className={`${styles.wrapper()} gap-3`}>
         {leftIcon && (

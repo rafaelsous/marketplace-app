@@ -14,41 +14,39 @@ export function LoginView({
 }: Readonly<ReturnType<typeof useLoginViewModel>>) {
   return (
     <KeyboardContainer>
-      <View className="px-[40px] flex-1 items-center justify-center gap-4">
-        <View className="w-full flex-1 justify-center">
+      <View className="px-[40px] flex-1 items-center justify-center gap-6">
+        <View className="w-full flex-1 justify-center gap-10">
           <AuthFormHeader
             title="Acesse sua conta"
             subtitle="Informe seu e-mail e senha para entrar"
           />
 
-          <AppInputController
-            control={control}
-            name="email"
-            label="E-mail"
-            leftIcon="LetterOutline"
-            placeholder="mail@exemplo.br"
-            keyboardType="email-address"
-          />
+          <View className="gap-6">
+            <AppInputController
+              control={control}
+              name="email"
+              label="E-mail"
+              leftIcon="LetterOutline"
+              placeholder="mail@exemplo.br"
+              keyboardType="email-address"
+            />
 
-          <AppInputController
-            control={control}
-            name="password"
-            label="Senha"
-            leftIcon="KeyMinimalisticSquare2Outline"
-            placeholder="Sua senha"
-            secureTextEntry
-          />
+            <AppInputController
+              control={control}
+              name="password"
+              label="Senha"
+              leftIcon="KeyMinimalisticSquare2Outline"
+              placeholder="Sua senha"
+              secureTextEntry
+            />
+          </View>
 
-          <AppButton
-            className="mt-6"
-            rightIcon="ArrowRightOutline"
-            onPress={onSubmit}
-          >
+          <AppButton rightIcon="ArrowRightOutline" onPress={onSubmit}>
             Acessar
           </AppButton>
         </View>
 
-        <View className="pb-16 flex-2 self-end gap-5">
+        <View className="relative top-16 pb-24 flex-2 self-end gap-5">
           <Text className="text-base text-gray-300">
             Ainda não tem uma conta?
           </Text>

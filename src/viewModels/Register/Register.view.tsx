@@ -45,64 +45,64 @@ export function RegisterView({
           )}
         </TouchableOpacity>
 
-        <AppInputController
-          control={control}
-          name="name"
-          label="Nome"
-          leftIcon="UserOutline"
-          placeholder="Seu nome completo"
-        />
+        <View className="gap-10">
+          <View className="gap-6">
+            <AppInputController
+              control={control}
+              name="name"
+              label="Nome"
+              leftIcon="UserOutline"
+              placeholder="Seu nome completo"
+            />
 
-        <AppInputController
-          control={control}
-          name="phone"
-          label="Telefone"
-          leftIcon="PhoneOutline"
-          placeholder="(00) 00000-0000"
-          keyboardType="phone-pad"
-        />
+            <AppInputController
+              control={control}
+              name="phone"
+              label="Telefone"
+              leftIcon="PhoneOutline"
+              placeholder="(00) 00000-0000"
+              keyboardType="phone-pad"
+            />
 
-        <Text
-          style={{ marginTop: 24 }}
-          className="text-base text-gray-500 font-bold"
-        >
-          Acesso
-        </Text>
+            <Text
+              style={{ marginTop: 24 }}
+              className="text-base text-gray-500 font-bold"
+            >
+              Acesso
+            </Text>
 
-        <AppInputController
-          control={control}
-          name="email"
-          label="E-mail"
-          leftIcon="LetterOutline"
-          placeholder="mail@exemplo.br"
-          keyboardType="email-address"
-        />
+            <AppInputController
+              control={control}
+              name="email"
+              label="E-mail"
+              leftIcon="LetterOutline"
+              placeholder="mail@exemplo.br"
+              keyboardType="email-address"
+            />
 
-        <AppInputController
-          control={control}
-          name="password"
-          label="Senha"
-          leftIcon="KeyMinimalisticSquare2Outline"
-          placeholder="Sua senha"
-          secureTextEntry
-        />
+            <AppInputController
+              control={control}
+              name="password"
+              label="Senha"
+              leftIcon="KeyMinimalisticSquare2Outline"
+              placeholder="Sua senha"
+              secureTextEntry
+            />
 
-        <AppInputController
-          control={control}
-          name="passwordConfirm"
-          label="Confirmar senha"
-          leftIcon="KeyMinimalisticSquare2Outline"
-          placeholder="Confirme a senha"
-          secureTextEntry
-        />
+            <AppInputController
+              control={control}
+              name="passwordConfirm"
+              label="Confirmar senha"
+              leftIcon="KeyMinimalisticSquare2Outline"
+              placeholder="Confirme a senha"
+              secureTextEntry
+            />
+          </View>
 
-        <AppButton
-          className="mt-6"
-          rightIcon="ArrowRightOutline"
-          onPress={onSubmit}
-        >
-          Cadastrar
-        </AppButton>
+          <AppButton rightIcon="ArrowRightOutline" onPress={onSubmit}>
+            Cadastrar
+          </AppButton>
+        </View>
 
         <View className="mt-16 pb-16 gap-5">
           <Text className="text-base text-gray-300">Já tem uma conta?</Text>
