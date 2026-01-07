@@ -44,7 +44,6 @@ export function AppInput({
     handleBlur,
     handleFocus,
     handleToggleShowPassword,
-    handleWrapperPress,
     showPassword,
     handleTextChange,
     isFocused,

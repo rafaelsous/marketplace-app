@@ -9,12 +9,14 @@ interface FilterState {
 
 interface FilterStoreProps {
   appliedFilterState: FilterState;
+  filterState: FilterState;
 
   updateFilter: (props: {
     key: keyof FilterState;
     value: string | number | number[];
   }) => void;
 
+  applyFilters: () => void;
   resetFilter: () => void;
 }
 
@@ -25,17 +27,24 @@ const defaultFilters: FilterState = {
   selectedCategories: [],
 };
 
-export const filterStore = create<FilterStoreProps>((set) => ({
+export const useFilterStore = create<FilterStoreProps>((set) => ({
   appliedFilterState: defaultFilters,
+  filterState: defaultFilters,
 
   updateFilter: ({ key, value }) => {
     set((state) => ({
-      appliedFilterState: { ...state.appliedFilterState, [key]: value },
+      filterState: { ...state.filterState, [key]: value },
     }));
   },
+
+  applyFilters: () =>
+    set((state) => ({
+      appliedFilterState: state.filterState,
+    })),
 
   resetFilter: () =>
     set({
       appliedFilterState: defaultFilters,
+      filterState: defaultFilters,
     }),
 }));
