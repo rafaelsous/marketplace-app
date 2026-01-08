@@ -7,6 +7,8 @@ import { useProductCardViewModel } from "./useProductCard.viewModel";
 
 export function ProductCardView({
   product,
+  displayName,
+  formatedRating,
 }: Readonly<ReturnType<typeof useProductCardViewModel>>) {
   return (
     <TouchableOpacity className="w-[48%] h-[157px] mt-6 mb-2 bg-white rounded-xl overflow-hidden shadow-sm">
@@ -20,17 +22,17 @@ export function ProductCardView({
         <View className="absolute top-0 right-0 px-2 py-1 flex-row items-center gap-1 rounded-b-lg rounded-r-none bg-white">
           <StarBold size={12} color={colors["blue-base"]} />
           <Text className="text-sm font-semibold text-gray-500">
-            {product.averageRating}
+            {formatedRating}
           </Text>
         </View>
       </View>
 
       <View className="p-3">
         <Text className="text-xs font-semibold" numberOfLines={2}>
-          {product.name}
+          {displayName}
         </Text>
 
-        <View className="flex-row items-center justify-center">
+        <View className="flex-row items-center">
           <Text>R$ {product.value}</Text>
         </View>
       </View>
