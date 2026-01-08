@@ -10,7 +10,7 @@ import {
 import { colors } from "@/styles/colors";
 
 import { AppIcon, SolarIconName } from "../AppIcon";
-import { useAppInputViewModel } from "./useAppInputViewModel";
+import { useAppInputViewModel } from "./useAppInput.viewModel";
 import { appInputVariants, AppInputVariantsProps } from "./input.variants";
 
 export type AppInputProps = TextInputProps &

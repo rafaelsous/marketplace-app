@@ -3,6 +3,7 @@ import { StarBold } from "@solar-icons/react-native";
 
 import { colors } from "@/styles/colors";
 
+import { AppPriceText } from "@/shared/components/AppPriceText";
 import { useProductCardViewModel } from "./useProductCard.viewModel";
 
 export function ProductCardView({
@@ -32,9 +33,11 @@ export function ProductCardView({
           {displayName}
         </Text>
 
-        <View className="flex-row items-center">
-          <Text>R$ {product.value}</Text>
-        </View>
+        <AppPriceText
+          value={Number(product.value)}
+          classNameCurrency="text-small"
+          classNameValue="flex-1 text-lg font-bold"
+        />
       </View>
     </TouchableOpacity>
   );
