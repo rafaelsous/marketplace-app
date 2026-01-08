@@ -7,9 +7,8 @@ import { useHomeViewModel } from "./useHome.viewModel";
 import { useUserStore } from "@/shared/store/user-store";
 
 import { Footer } from "./components/Footer";
-import { HomeHeader } from "./components/Header";
-import { SearchInput } from "./components/SearchInput";
 import { ProductCard } from "./components/ProductCard";
+import { RenderHeader } from "./components/RenderHeader";
 
 export function HomeView({
   products,
@@ -19,6 +18,8 @@ export function HomeView({
   isFetchingNextPage,
   handleRefresh,
   isRefetching,
+  searchInputText,
+  setSearchInputText,
 }: Readonly<ReturnType<typeof useHomeViewModel>>) {
   const { logout } = useUserStore();
 
@@ -30,12 +31,12 @@ export function HomeView({
         numColumns={2}
         columnWrapperClassName="justify-between"
         renderItem={({ item }) => <ProductCard product={item} />}
-        ListHeaderComponent={() => (
-          <>
-            <HomeHeader />
-            <SearchInput />
-          </>
-        )}
+        ListHeaderComponent={
+          <RenderHeader
+            searchInputText={searchInputText}
+            setSearchInputText={setSearchInputText}
+          />
+        }
         ListFooterComponent={
           <Footer
             isLoading={hasNextPage && Boolean(isLoading || isFetchingNextPage)}

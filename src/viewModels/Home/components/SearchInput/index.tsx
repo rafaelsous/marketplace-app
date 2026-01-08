@@ -4,11 +4,19 @@ import { colors } from "@/styles/colors";
 
 import { useBottomSheetStore } from "@/shared/store/bottomsheet-store";
 
+import { Filter } from "../Filter";
 import { AppIcon } from "@/shared/components/AppIcon";
 import { AppInput } from "@/shared/components/AppInput";
-import { Filter } from "../Filter";
 
-export function SearchInput() {
+interface SearchInputParams {
+  inputValue: string;
+  setSearchInputText: (text: string) => void;
+}
+
+export function SearchInput({
+  inputValue,
+  setSearchInputText,
+}: Readonly<SearchInputParams>) {
   const { open } = useBottomSheetStore();
 
   return (
@@ -21,6 +29,8 @@ export function SearchInput() {
             leftIcon="MagniferOutline"
             placeholder="Pesquisar"
             containerClassName="m-0  p-0 flex-1 text-lg"
+            value={inputValue}
+            onChangeText={setSearchInputText}
           />
         </View>
 
