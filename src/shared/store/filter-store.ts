@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-interface FilterState {
+export interface FilterState {
   searchText: string | null;
   minValue: number | null;
   maxValue: number | null;
@@ -17,7 +17,7 @@ interface FilterStoreProps {
   }) => void;
 
   applyFilters: () => void;
-  resetFilter: () => void;
+  resetFilters: () => void;
 }
 
 const defaultFilters: FilterState = {
@@ -42,7 +42,7 @@ export const useFilterStore = create<FilterStoreProps>((set) => ({
       appliedFilterState: state.filterState,
     })),
 
-  resetFilter: () =>
+  resetFilters: () =>
     set({
       appliedFilterState: defaultFilters,
       filterState: defaultFilters,

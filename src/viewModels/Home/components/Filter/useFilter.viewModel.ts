@@ -1,12 +1,13 @@
 import { useFilterStore } from "@/shared/store/filter-store";
+import { useBottomSheetStore } from "@/shared/store/bottomsheet-store";
 import { useGetProductCategoriesQuery } from "@/shared/queries/product/use-get-product-categories.query";
 
 export function useFilterViewModel() {
   const { data: productCategories, isLoading } = useGetProductCategoriesQuery();
 
-  const { updateFilter, filterState } = useFilterStore();
-
-  console.log({ filterState });
+  const { close } = useBottomSheetStore();
+  const { updateFilter, filterState, applyFilters, resetFilters } =
+    useFilterStore();
 
   function handleSearchTextChange(text: string) {
     updateFilter({ key: "searchText", value: text });
@@ -37,13 +38,27 @@ export function useFilterViewModel() {
         });
   }
 
+  function handleApplyFilters() {
+    console.log("Applying filters...");
+
+    applyFilters();
+    close();
+  }
+
+  function handleResetFilters() {
+    close();
+    resetFilters();
+  }
+
   return {
-    productCategories,
     isLoading,
-    handleSearchTextChange,
+    productCategories,
+    selectedCategories: filterState.selectedCategories,
+    handleApplyFilters,
+    handleResetFilters,
+    handleCategoryToggle,
     handleMinValueChange,
     handleMaxValueChange,
-    handleCategoryToggle,
-    selectedCategories: filterState.selectedCategories,
+    handleSearchTextChange,
   };
 }

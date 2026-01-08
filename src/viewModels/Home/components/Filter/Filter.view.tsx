@@ -17,6 +17,8 @@ export function FilterView({
   handleMinValueChange,
   handleMaxValueChange,
   handleCategoryToggle,
+  handleApplyFilters,
+  handleResetFilters,
 }: Readonly<ReturnType<typeof useFilterViewModel>>) {
   const { close } = useBottomSheetStore();
 
@@ -108,11 +110,13 @@ export function FilterView({
 
       <View className="mt-10 mb-6 flex-row gap-3">
         <View className="flex-1">
-          <AppButton variant="outlined">Limpar filtro</AppButton>
+          <AppButton variant="outlined" onPress={handleResetFilters}>
+            Limpar filtro
+          </AppButton>
         </View>
 
         <View className="flex-1">
-          <AppButton>Filtrar</AppButton>
+          <AppButton onPress={handleApplyFilters}>Filtrar</AppButton>
         </View>
       </View>
     </View>
