@@ -1,5 +1,6 @@
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { router } from "expo-router";
 import { StarBold } from "@solar-icons/react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 
 import { colors } from "@/styles/colors";
 
@@ -12,7 +13,11 @@ export function ProductCardView({
   formatedRating,
 }: Readonly<ReturnType<typeof useProductCardViewModel>>) {
   return (
-    <TouchableOpacity className="w-[48%] h-[157px] mt-6 mb-2 bg-white rounded-xl overflow-hidden shadow-sm">
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={() => router.push(`product/${product.id}`)}
+      className="w-[48%] h-[157px] mt-6 mb-2 bg-white rounded-xl overflow-hidden shadow-sm"
+    >
       <View>
         <Image
           source={{ uri: product.photo }}
