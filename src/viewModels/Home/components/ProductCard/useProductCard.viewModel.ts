@@ -1,7 +1,7 @@
-import { ProductI } from "@/shared/interfaces/product";
+import { Product } from "@/shared/interfaces/product";
 
 interface UseProductCardViewModelParams {
-  product: ProductI;
+  product: Product;
 }
 
 function formatProductName(name: string) {

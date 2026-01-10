@@ -1,10 +1,10 @@
-import { ProductI } from "@/shared/interfaces/product";
+import { Product } from "@/shared/interfaces/product";
 
 import { ProductCardView } from "./ProductCard.view";
 import { useProductCardViewModel } from "./useProductCard.viewModel";
 
 interface ProductCardParams {
-  product: ProductI;
+  product: Product;
 }
 
 export function ProductCard(props: Readonly<ProductCardParams>) {

@@ -1,11 +1,13 @@
 import { marketPlaceApiClient } from "../api/marketplace";
 
 import { ProductRequest } from "../interfaces/http/product";
-import { ProductCategory, ProductI } from "../interfaces/product";
-import { ProductResponse } from "../interfaces/http/product-response";
+import { ProductComment } from "../interfaces/product-comment";
+import { ProductCategory, Product } from "../interfaces/product";
+import { ProductComments } from "../interfaces/http/product-comments";
+import { PaginatedResponse } from "../interfaces/http/paginated-response";
 
 export async function getProducts(params: ProductRequest) {
-  const { data } = await marketPlaceApiClient.post<ProductResponse>(
+  const { data } = await marketPlaceApiClient.post<PaginatedResponse<Product>>(
     "/products",
     params
   );
@@ -22,9 +24,17 @@ export async function getProductCategories() {
 }
 
 export async function getProductDetails(productId: number) {
-  const { data } = await marketPlaceApiClient.get<ProductI>(
+  const { data } = await marketPlaceApiClient.get<Product>(
     `/products/${productId}`
   );
+
+  return data;
+}
+
+export async function getProductComments(params: ProductComments) {
+  const { data } = await marketPlaceApiClient.post<
+    PaginatedResponse<ProductComment>
+  >("/products/comments", params);
 
   return data;
 }

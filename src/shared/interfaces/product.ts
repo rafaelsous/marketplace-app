@@ -3,7 +3,7 @@ export interface ProductCategory {
   name: string;
 }
 
-export interface ProductI {
+export interface Product {
   id: number;
   value: string;
   name: string;

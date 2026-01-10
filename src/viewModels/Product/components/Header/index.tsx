@@ -5,11 +5,11 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import { colors } from "@/styles/colors";
 
 import { AppIcon } from "@/shared/components/AppIcon";
-import { ProductI } from "@/shared/interfaces/product";
+import { Product } from "@/shared/interfaces/product";
 import { AppPriceText } from "@/shared/components/AppPriceText";
 
 interface ProductHeaderPrams {
-  productDetails: ProductI;
+  productDetails: Product;
 }
 
 export function ProductHeader({
