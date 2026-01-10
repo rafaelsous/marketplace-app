@@ -8,7 +8,7 @@ interface ProductsInfinityQueryParams {
   filters?: FilterState;
 }
 
-export function useProductInfinityQuery({
+export function useProductInfiniteQuery({
   filters,
 }: ProductsInfinityQueryParams) {
   const {
