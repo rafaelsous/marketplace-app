@@ -7,7 +7,7 @@ export interface ProductComment {
   user: {
     id: number;
     name: string;
-    eamil: string;
+    email: string;
     avatar: {
       url: string;
     };

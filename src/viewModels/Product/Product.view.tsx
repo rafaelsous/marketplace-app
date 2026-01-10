@@ -3,6 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useProductViewModel } from "./useProduct.viewModel";
 
+import { CommentItem } from "./components/CommentItem";
 import { ProductHeader } from "./components/Header";
 
 export function ProductView({
@@ -15,7 +16,7 @@ export function ProductView({
   isLoadingComments,
   productComments,
 }: Readonly<ReturnType<typeof useProductViewModel>>) {
-  console.log(productComments);
+  console.log(JSON.stringify(productComments));
 
   if (error) {
     return <Text>Houve um erro ao carregar detalhes do produto</Text>;
@@ -27,8 +28,11 @@ export function ProductView({
     <SafeAreaView className="flex-1 bg-background">
       <FlatList
         data={productComments}
-        renderItem={() => <></>}
+        keyExtractor={({ id }) => `product-comment-${id}`}
+        renderItem={({ item }) => <CommentItem comment={item} />}
         className="px-6"
+        contentContainerClassName="pb-24 gap-2"
+        showsVerticalScrollIndicator={false}
         ListHeaderComponent={<ProductHeader productDetails={productDetails} />}
       />
     </SafeAreaView>
