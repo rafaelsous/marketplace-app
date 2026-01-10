@@ -9,7 +9,14 @@ export function ProductView({
   error,
   isLoading,
   productDetails,
+  getCommentsError,
+  handleReached,
+  handleRefetch,
+  isLoadingComments,
+  productComments,
 }: Readonly<ReturnType<typeof useProductViewModel>>) {
+  console.log(productComments);
+
   if (error) {
     return <Text>Houve um erro ao carregar detalhes do produto</Text>;
   }
@@ -19,7 +26,7 @@ export function ProductView({
   return (
     <SafeAreaView className="flex-1 bg-background">
       <FlatList
-        data={[]}
+        data={productComments}
         renderItem={() => <></>}
         className="px-6"
         ListHeaderComponent={<ProductHeader productDetails={productDetails} />}
