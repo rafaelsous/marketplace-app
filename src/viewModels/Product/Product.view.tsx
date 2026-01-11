@@ -1,4 +1,4 @@
-import { FlatList, Text } from "react-native";
+import { FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useProductViewModel } from "./useProduct.viewModel";
@@ -8,6 +8,7 @@ import { EmtpyList } from "./components/EmptyList";
 import { ProductHeader } from "./components/Header";
 import { ListFooter } from "./components/ListFooter";
 import { CommentItem } from "./components/CommentItem";
+import { ProductDetailError } from "./components/Error";
 
 export function ProductView({
   error,
@@ -23,15 +24,11 @@ export function ProductView({
 }: Readonly<ReturnType<typeof useProductViewModel>>) {
   console.log(JSON.stringify(productComments));
 
-  if (error) {
-    return <Text>Houve um erro ao carregar detalhes do produto</Text>;
-  }
+  if (error) return <ProductDetailError />;
 
   if (!productDetails) return null;
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  if (isLoading || !productDetails) return <Loading />;
 
   return (
     <SafeAreaView className="flex-1 bg-background">
