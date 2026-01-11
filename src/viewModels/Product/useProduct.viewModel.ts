@@ -44,5 +44,7 @@ export function useProductViewModel(productId: number) {
     handleRefetch,
     handleReached,
     getCommentsError,
+    isRefetching,
+    isFetchingNextPage,
   };
 }
