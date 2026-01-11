@@ -9,6 +9,7 @@ import { ProductHeader } from "./components/Header";
 import { ListFooter } from "./components/ListFooter";
 import { CommentItem } from "./components/CommentItem";
 import { ProductDetailError } from "./components/Error";
+import { AddToCartFooter } from "./components/AddToCartFooter";
 
 export function ProductView({
   error,
@@ -22,8 +23,6 @@ export function ProductView({
   isRefetching,
   isFetchingNextPage,
 }: Readonly<ReturnType<typeof useProductViewModel>>) {
-  console.log(JSON.stringify(productComments));
-
   if (error) return <ProductDetailError />;
 
   if (!productDetails) return null;
@@ -31,13 +30,13 @@ export function ProductView({
   if (isLoading || !productDetails) return <Loading />;
 
   return (
-    <SafeAreaView className="flex-1 bg-background">
+    <SafeAreaView edges={["top"]} className="flex-1 bg-background">
       <FlatList
         data={productComments}
         keyExtractor={({ id }) => `product-comment-${id}`}
         renderItem={({ item }) => <CommentItem comment={item} />}
         className="px-6"
-        contentContainerClassName="pb-24 gap-3"
+        contentContainerStyle={{ paddingBottom: 24, gap: 12 }}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={<ProductHeader productDetails={productDetails} />}
         ListFooterComponent={<ListFooter isLoadingMore={isFetchingNextPage} />}
@@ -46,6 +45,8 @@ export function ProductView({
         onRefresh={handleRefetch}
         refreshing={isRefetching}
       />
+
+      <AddToCartFooter product={productDetails} />
     </SafeAreaView>
   );
 }

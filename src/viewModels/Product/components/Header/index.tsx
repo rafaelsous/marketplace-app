@@ -4,8 +4,8 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 
 import { colors } from "@/styles/colors";
 
-import { AppIcon } from "@/shared/components/AppIcon";
 import { Product } from "@/shared/interfaces/product";
+import { AppIcon } from "@/shared/components/AppIcon";
 import { AppPriceText } from "@/shared/components/AppPriceText";
 
 interface ProductHeaderPrams {
@@ -106,7 +106,7 @@ export function ProductHeader({
           </View>
         </View>
 
-        <View className="w-full h-[1px] bg-gray-100/30" />
+        <View className="w-full h-[1px] bg-shape" />
 
         <View>
           <View className="flex-row items-center justify-between">
