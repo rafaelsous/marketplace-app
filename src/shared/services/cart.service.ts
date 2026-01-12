@@ -22,6 +22,11 @@ export const cartService = {
 
     return [...productList, { ...newProduct, quantity: 1 }];
   },
+  calculateTotal: (productsList: CartProduct[]) => {
+    return productsList.reduce((acc, product) => {
+      return acc + Number(product.price) * product.quantity;
+    }, 0);
+  },
   removeProductFromCart: () => {},
   updateProductQuantity: () => {},
 };

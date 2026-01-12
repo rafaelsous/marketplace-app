@@ -37,7 +37,9 @@ export const useCartStore = create<CartStore>()(
             newProduct
           );
 
-          return { products: newItems, total: 1 };
+          const newTotal = cartService.calculateTotal(newItems);
+
+          return { products: newItems, total: newTotal };
         }),
       removeProduct: (productId: number) => set({}),
       updateQuantity: (params: { productId: number; quantity: number }) =>
