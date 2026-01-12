@@ -26,8 +26,7 @@ export function useProductViewModel(productId: number) {
     isFetchingNextPage,
   } = useGetProductCommentsInfiniteQuery(productId);
 
-  const { addProduct, products } = useCartStore();
-  console.log("cart products:", products);
+  const { addProduct } = useCartStore();
 
   const { open, close } = useModalStore();
 
@@ -47,6 +46,16 @@ export function useProductViewModel(productId: number) {
     handleLoadMore();
   }
 
+  function onGoToCart() {
+    router.push("/(private)/(tabs)/cart");
+    close();
+  }
+
+  function onContinueShopping() {
+    router.push("/(private)/(tabs)/home");
+    close();
+  }
+
   function handleAddProductToCart() {
     if (!productDetails) return;
 
@@ -58,8 +67,8 @@ export function useProductViewModel(productId: number) {
       createElement(AddToCartSuccessModal, {
         productName: name,
         onClose: close,
-        onGoToCart: () => router.push("/(private)/(tabs)/cart"),
-        onContinueShopping: () => router.push("/(private)/(tabs)/home"),
+        onGoToCart,
+        onContinueShopping,
       })
     );
   }
