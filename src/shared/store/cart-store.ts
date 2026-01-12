@@ -26,7 +26,7 @@ interface CartStore {
 
 export const useCartStore = create<CartStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       products: [],
       total: 0,
 
@@ -39,11 +39,17 @@ export const useCartStore = create<CartStore>()(
         ),
 
       updateQuantity: (params: { productId: number; quantity: number }) =>
-        set({}),
+        set((state) =>
+          cartService.updateProductQuantity({
+            productsList: state.products,
+            productId: params.productId,
+            quantity: params.quantity,
+          })
+        ),
 
       clearCart: () => set({ products: [], total: 0 }),
 
-      getItemCount: () => 0,
+      getItemCount: () => cartService.getItemCount(get().products),
     }),
     { name: "marketplace-cart", storage: createJSONStorage(() => AsyncStorage) }
   )

@@ -3,6 +3,7 @@ import { CartProduct, OmitedCartProduct } from "../store/cart-store";
 export const cartService = {
   findExistingProduct: (productList: CartProduct[], productId: number) =>
     productList.some(({ id }) => id === productId),
+
   addProdutToCart: (
     productList: CartProduct[],
     newProduct: OmitedCartProduct
@@ -28,11 +29,13 @@ export const cartService = {
 
     return { products: updatedProductList, total: updatedTotal };
   },
+
   calculateTotal: (productsList: CartProduct[]) =>
     productsList.reduce(
       (acc, product) => acc + Number(product.price) * product.quantity,
       0
     ),
+
   removeProductFromCart: (productsList: CartProduct[], productId: number) => {
     const updatedProductList = productsList.filter(
       ({ id }) => id !== productId
@@ -41,5 +44,30 @@ export const cartService = {
 
     return { products: updatedProductList, total: updatedTotal };
   },
-  updateProductQuantity: () => {},
+
+  updateProductQuantity: ({
+    productsList,
+    productId,
+    quantity,
+  }: {
+    productsList: CartProduct[];
+    productId: number;
+    quantity: number;
+  }) => {
+    if (quantity <= 0) {
+      return cartService.removeProductFromCart(productsList, productId);
+    }
+
+    const updatedProductList = productsList.map((product) =>
+      product.id === productId
+        ? { ...product, quantity: product.quantity + quantity }
+        : product
+    );
+    const updatedTotal = cartService.calculateTotal(updatedProductList);
+
+    return { products: updatedProductList, total: updatedTotal };
+  },
+
+  getItemCount: (productsList: CartProduct[]) =>
+    productsList.reduce((acc, product) => acc + product.quantity, 0),
 };
