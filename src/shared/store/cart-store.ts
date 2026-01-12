@@ -1,0 +1,38 @@
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+export interface CartProduct {
+  id: number;
+  name: string;
+  price: string;
+  quantity: number;
+  image?: string;
+}
+
+interface CartStore {
+  products: CartProduct[];
+  total: number;
+  addProduct: (product: Omit<CartProduct, "quantity">) => void;
+  removeProduct: (productId: number) => void;
+  updateQuantity: (params: { productId: number; quantity: number }) => void;
+  clearCart: () => void;
+  getItemCount: () => number;
+}
+
+export const useCartStore = create<CartStore>()(
+  persist(
+    (set) => ({
+      products: [],
+      total: 0,
+
+      addProduct: (product: Omit<CartProduct, "quantity">) => set({}),
+      removeProduct: (productId: number) => set({}),
+      updateQuantity: (params: { productId: number; quantity: number }) =>
+        set({}),
+      clearCart: () => set({ products: [], total: 0 }),
+      getItemCount: () => 0,
+    }),
+    { name: "marketplace-cart", storage: createJSONStorage(() => AsyncStorage) }
+  )
+);
