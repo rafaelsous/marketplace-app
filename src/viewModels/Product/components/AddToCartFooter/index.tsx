@@ -8,9 +8,13 @@ import { AppPriceText } from "@/shared/components/AppPriceText";
 
 interface AddToCartFooterProps {
   product: Product;
+  onAddToCart: () => void;
 }
 
-export function AddToCartFooter({ product }: Readonly<AddToCartFooterProps>) {
+export function AddToCartFooter({
+  product,
+  onAddToCart,
+}: Readonly<AddToCartFooterProps>) {
   return (
     <View
       style={{
@@ -25,6 +29,7 @@ export function AddToCartFooter({ product }: Readonly<AddToCartFooterProps>) {
       <AppButton
         leftIcon="CartLargeMinimalisticOutline"
         className="w-auto gap-2"
+        onPress={onAddToCart}
       >
         Adicionar
       </AppButton>

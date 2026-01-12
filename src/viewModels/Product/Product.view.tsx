@@ -22,6 +22,7 @@ export function ProductView({
   productComments,
   isRefetching,
   isFetchingNextPage,
+  handleAddProductToCart,
 }: Readonly<ReturnType<typeof useProductViewModel>>) {
   if (error) return <ProductDetailError />;
 
@@ -46,7 +47,10 @@ export function ProductView({
         refreshing={isRefetching}
       />
 
-      <AddToCartFooter product={productDetails} />
+      <AddToCartFooter
+        product={productDetails}
+        onAddToCart={handleAddProductToCart}
+      />
     </SafeAreaView>
   );
 }

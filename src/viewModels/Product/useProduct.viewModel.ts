@@ -1,3 +1,10 @@
+import { router } from "expo-router";
+import { createElement } from "react";
+
+import { useCartStore } from "@/shared/store/cart-store";
+import { useModalStore } from "@/shared/store/modal-store";
+
+import { AddToCartSuccessModal } from "./components/AddToCartSuccessModal";
 import { useGetProductDetailsQuery } from "@/shared/queries/product/use-get-product-details.query";
 import { useGetProductCommentsInfiniteQuery } from "@/shared/queries/product/use-get-product-comments-infinite.query";
 
@@ -19,6 +26,11 @@ export function useProductViewModel(productId: number) {
     isFetchingNextPage,
   } = useGetProductCommentsInfiniteQuery(productId);
 
+  const { addProduct, products } = useCartStore();
+  console.log("cart products:", products);
+
+  const { open, close } = useModalStore();
+
   function handleLoadMore() {
     if (hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
@@ -35,6 +47,23 @@ export function useProductViewModel(productId: number) {
     handleLoadMore();
   }
 
+  function handleAddProductToCart() {
+    if (!productDetails) return;
+
+    const { id, name, value, photo } = productDetails;
+
+    addProduct({ id, name, price: value, image: photo });
+
+    open(
+      createElement(AddToCartSuccessModal, {
+        productName: name,
+        onClose: close,
+        onGoToCart: () => router.push("/(private)/(tabs)/cart"),
+        onContinueShopping: () => router.push("/(private)/(tabs)/home"),
+      })
+    );
+  }
+
   return {
     productDetails,
     isLoading,
@@ -46,5 +75,6 @@ export function useProductViewModel(productId: number) {
     getCommentsError,
     isRefetching,
     isFetchingNextPage,
+    handleAddProductToCart,
   };
 }
