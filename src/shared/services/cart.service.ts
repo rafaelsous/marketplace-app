@@ -13,20 +13,33 @@ export const cartService = {
     );
 
     if (existingProduct) {
-      return productList.map((product) => {
-        return product.id === newProduct.id
+      const updatedProductList = productList.map((product) =>
+        product.id === newProduct.id
           ? { ...product, quantity: product.quantity + 1 }
-          : product;
-      });
+          : product
+      );
+      const updatedTotal = cartService.calculateTotal(updatedProductList);
+
+      return { products: updatedProductList, total: updatedTotal };
     }
 
-    return [...productList, { ...newProduct, quantity: 1 }];
+    const updatedProductList = [...productList, { ...newProduct, quantity: 1 }];
+    const updatedTotal = cartService.calculateTotal(updatedProductList);
+
+    return { products: updatedProductList, total: updatedTotal };
   },
-  calculateTotal: (productsList: CartProduct[]) => {
-    return productsList.reduce((acc, product) => {
-      return acc + Number(product.price) * product.quantity;
-    }, 0);
+  calculateTotal: (productsList: CartProduct[]) =>
+    productsList.reduce(
+      (acc, product) => acc + Number(product.price) * product.quantity,
+      0
+    ),
+  removeProductFromCart: (productsList: CartProduct[], productId: number) => {
+    const updatedProductList = productsList.filter(
+      ({ id }) => id !== productId
+    );
+    const updatedTotal = cartService.calculateTotal(updatedProductList);
+
+    return { products: updatedProductList, total: updatedTotal };
   },
-  removeProductFromCart: () => {},
   updateProductQuantity: () => {},
 };

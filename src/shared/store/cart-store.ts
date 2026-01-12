@@ -31,20 +31,18 @@ export const useCartStore = create<CartStore>()(
       total: 0,
 
       addProduct: (newProduct: OmitedCartProduct) =>
-        set((state) => {
-          const newItems = cartService.addProdutToCart(
-            state.products,
-            newProduct
-          );
+        set((state) => cartService.addProdutToCart(state.products, newProduct)),
 
-          const newTotal = cartService.calculateTotal(newItems);
+      removeProduct: (productId: number) =>
+        set((state) =>
+          cartService.removeProductFromCart(state.products, productId)
+        ),
 
-          return { products: newItems, total: newTotal };
-        }),
-      removeProduct: (productId: number) => set({}),
       updateQuantity: (params: { productId: number; quantity: number }) =>
         set({}),
+
       clearCart: () => set({ products: [], total: 0 }),
+
       getItemCount: () => 0,
     }),
     { name: "marketplace-cart", storage: createJSONStorage(() => AsyncStorage) }
