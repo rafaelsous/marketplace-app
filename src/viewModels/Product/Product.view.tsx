@@ -23,6 +23,7 @@ export function ProductView({
   isRefetching,
   isFetchingNextPage,
   handleAddProductToCart,
+  handleOpenReview,
 }: Readonly<ReturnType<typeof useProductViewModel>>) {
   if (error) return <ProductDetailError />;
 
@@ -39,7 +40,12 @@ export function ProductView({
         className="px-6"
         contentContainerStyle={{ paddingBottom: 24, gap: 12 }}
         showsVerticalScrollIndicator={false}
-        ListHeaderComponent={<ProductHeader productDetails={productDetails} />}
+        ListHeaderComponent={
+          <ProductHeader
+            productDetails={productDetails}
+            onOpenReview={handleOpenReview}
+          />
+        }
         ListFooterComponent={<ListFooter isLoadingMore={isFetchingNextPage} />}
         ListEmptyComponent={<EmtpyList isLoadingComments={isLoadingComments} />}
         onEndReached={handleReached}

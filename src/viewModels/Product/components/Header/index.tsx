@@ -10,10 +10,12 @@ import { AppPriceText } from "@/shared/components/AppPriceText";
 
 interface ProductHeaderPrams {
   productDetails: Product;
+  onOpenReview?: () => void;
 }
 
 export function ProductHeader({
   productDetails,
+  onOpenReview,
 }: Readonly<ProductHeaderPrams>) {
   return (
     <>
@@ -114,7 +116,11 @@ export function ProductHeader({
               Avaliações
             </Text>
 
-            <TouchableOpacity hitSlop={16} activeOpacity={0.7}>
+            <TouchableOpacity
+              hitSlop={16}
+              activeOpacity={0.7}
+              onPress={onOpenReview}
+            >
               <Text className="text-base text-purple-base font-medium">
                 Avaliar
               </Text>
