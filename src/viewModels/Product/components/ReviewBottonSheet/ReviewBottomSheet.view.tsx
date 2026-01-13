@@ -4,9 +4,10 @@ import { colors } from "@/styles/colors";
 
 import { useReviewBottomSheetViewModel } from "./useReviewBottomSheet.viewModel";
 
+import { Stars } from "./components/Stars";
 import { AppIcon } from "@/shared/components/AppIcon";
-import { AppButton } from "@/shared/components/AppButton";
 import { AppInput } from "@/shared/components/AppInput";
+import { AppButton } from "@/shared/components/AppButton";
 
 export function ReviewBottomSheetView({}: Readonly<
   ReturnType<typeof useReviewBottomSheetViewModel>
@@ -32,11 +33,7 @@ export function ReviewBottomSheetView({}: Readonly<
           <Text className="text-md text-gray-300 uppercase">Nota</Text>
 
           <View className="flex-row items-center gap-2">
-            <AppIcon name="StarOutline" size={28} color={colors.gray[200]} />
-            <AppIcon name="StarOutline" size={28} color={colors.gray[200]} />
-            <AppIcon name="StarOutline" size={28} color={colors.gray[200]} />
-            <AppIcon name="StarOutline" size={28} color={colors.gray[200]} />
-            <AppIcon name="StarOutline" size={28} color={colors.gray[200]} />
+            <Stars rating={3} />
           </View>
         </View>
 
