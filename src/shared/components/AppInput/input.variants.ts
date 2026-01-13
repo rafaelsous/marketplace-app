@@ -3,7 +3,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 export const appInputVariants = tv({
   slots: {
     container: "w-full justify-center",
-    wrapper: "flex-row items-center border-b border-gray-200",
+    wrapper: "flex-row items-center border-b border-gray-100",
     input: "flex-1 text-base text-gray-500 bg-transparent",
     label: "mb-1 text-xs text-gray-300 font-semibold uppercase",
     error: "mt-1 text-sm text-danger",
