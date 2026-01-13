@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Toast } from "toastify-react-native";
 
+import { useBottomSheetStore } from "@/shared/store/bottomsheet-store";
+
 import { useGetUserCommentQuery } from "@/shared/queries/comment/use-get-user-comment.query";
 import { useCreateProductCommentMutation } from "@/shared/queries/comment/use-create-product-comment.mutation";
 import { useUpdateProductCommentMutation } from "@/shared/queries/comment/use-update-product-comment.mutation";
@@ -30,9 +32,11 @@ export function useReviewBottomSheetViewModel(productId: number) {
   const createProductCommentMutation =
     useCreateProductCommentMutation(productId);
   const updateProductCommentMutation = useUpdateProductCommentMutation(
-    productId,
+    ratingForm.commentId!,
     productId
   );
+
+  const { close: closeBottomSheet } = useBottomSheetStore();
 
   function handleRatingChange(rating: number) {
     setRatingForm((prevState) => ({
@@ -46,6 +50,10 @@ export function useReviewBottomSheetViewModel(productId: number) {
       ...prevState,
       content,
     }));
+  }
+
+  function handleCloseBottomSheet() {
+    closeBottomSheet();
   }
 
   async function handleSubmit() {
@@ -73,6 +81,8 @@ export function useReviewBottomSheetViewModel(productId: number) {
         productId,
       });
     }
+
+    handleCloseBottomSheet();
   }
 
   const isLoading =
@@ -82,7 +92,7 @@ export function useReviewBottomSheetViewModel(productId: number) {
   useEffect(() => {
     if (userComment?.comment) {
       setRatingForm({
-        isEditing: false,
+        isEditing: true,
         rating: userComment.rating,
         commentId: userComment.comment.id,
         content: userComment.comment.content,
@@ -99,5 +109,6 @@ export function useReviewBottomSheetViewModel(productId: number) {
     handleSubmit,
     handleRatingChange,
     handleContentChange,
+    handleCloseBottomSheet,
   };
 }

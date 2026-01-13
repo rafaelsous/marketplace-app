@@ -16,7 +16,7 @@ export function Stars({ rating, handleRatingChange }: StarsProps) {
 
     return (
       <TouchableOpacity
-        key={starNumber}
+        key={`rating-start-${starNumber}`}
         activeOpacity={0.7}
         onPress={() => handleRatingChange(starNumber)}
       >

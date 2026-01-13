@@ -5,7 +5,7 @@ export interface UpdateProductComment {
 
 export interface UpdateProductCommentResponse {
   message: string;
-  ratingUpdated: true;
+  ratingUpdated: boolean;
   comment: {
     id: number;
     content: string;

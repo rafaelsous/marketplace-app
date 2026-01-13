@@ -15,6 +15,7 @@ export function ReviewBottomSheetView({
   handleSubmit,
   handleRatingChange,
   handleContentChange,
+  handleCloseBottomSheet,
 }: Readonly<ReturnType<typeof useReviewBottomSheetViewModel>>) {
   return (
     <View className="p-6 gap-10">
@@ -24,7 +25,11 @@ export function ReviewBottomSheetView({
             {ratingForm.isEditing ? "Editar avaliação" : "Avaliar produto"}
           </Text>
 
-          <TouchableOpacity hitSlop={16} activeOpacity={0.7}>
+          <TouchableOpacity
+            hitSlop={16}
+            activeOpacity={0.7}
+            onPress={handleCloseBottomSheet}
+          >
             <AppIcon
               name="CloseSquareOutline"
               size={24}
@@ -68,7 +73,7 @@ export function ReviewBottomSheetView({
                 numberOfLines={8}
                 textAlign="left"
                 textAlignVertical="top"
-                className="h-[150px]"
+                className="w-full h-[150px]"
                 value={ratingForm.content}
                 onChangeText={handleContentChange}
               />
@@ -76,7 +81,11 @@ export function ReviewBottomSheetView({
 
             <View className="mb-4 flex-row items-center justify-between gap-3">
               <View className="flex-1">
-                <AppButton variant="outlined" className="w-full">
+                <AppButton
+                  variant="outlined"
+                  className="w-full"
+                  onPress={handleCloseBottomSheet}
+                >
                   Cancelar
                 </AppButton>
               </View>
