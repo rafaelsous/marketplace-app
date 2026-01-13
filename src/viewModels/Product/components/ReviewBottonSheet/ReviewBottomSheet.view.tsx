@@ -9,15 +9,17 @@ import { AppIcon } from "@/shared/components/AppIcon";
 import { AppInput } from "@/shared/components/AppInput";
 import { AppButton } from "@/shared/components/AppButton";
 
-export function ReviewBottomSheetView({}: Readonly<
-  ReturnType<typeof useReviewBottomSheetViewModel>
->) {
+export function ReviewBottomSheetView({
+  handleRatingChange,
+  handleContentChange,
+  ratingForm,
+}: Readonly<ReturnType<typeof useReviewBottomSheetViewModel>>) {
   return (
     <View className="p-6 gap-10">
       <View className="gap-6 bg-background rounded-t-2xl">
         <View className="flex-row items-center justify-between">
           <Text className="text-lg text-gray-500 font-bold">
-            Avaliar produto
+            {ratingForm.isEditing ? "Editar avaliação" : "Avaliar produto"}
           </Text>
 
           <TouchableOpacity hitSlop={16} activeOpacity={0.7}>
@@ -33,7 +35,10 @@ export function ReviewBottomSheetView({}: Readonly<
           <Text className="text-md text-gray-300 uppercase">Nota</Text>
 
           <View className="flex-row items-center gap-2">
-            <Stars rating={3} />
+            <Stars
+              rating={ratingForm.rating}
+              handleRatingChange={handleRatingChange}
+            />
           </View>
         </View>
 
@@ -41,14 +46,18 @@ export function ReviewBottomSheetView({}: Readonly<
           <Text className="text-md text-gray-300 uppercase">Comentário</Text>
 
           <AppInput
-            placeholder="Descreva sua avaliação"
-            value=""
+            placeholder={
+              ratingForm.isEditing
+                ? "Atualize sua avaliação"
+                : "Descreva sua avaliação"
+            }
             multiline
             numberOfLines={8}
             textAlign="left"
             textAlignVertical="top"
             className="h-[150px]"
-            containerClassName=""
+            value={ratingForm.content}
+            onChangeText={handleContentChange}
           />
         </View>
       </View>
@@ -61,7 +70,9 @@ export function ReviewBottomSheetView({}: Readonly<
         </View>
 
         <View className="flex-1">
-          <AppButton className="w-full">Enviar</AppButton>
+          <AppButton className="w-full">
+            {ratingForm.isEditing ? "Atualizar" : "Enviar"}
+          </AppButton>
         </View>
       </View>
     </View>

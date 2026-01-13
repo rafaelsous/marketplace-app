@@ -8,7 +8,7 @@ interface ReviewBottomSheetProps {
 export function ReviewBottomSheet({
   productId,
 }: Readonly<ReviewBottomSheetProps>) {
-  const viewModel = useReviewBottomSheetViewModel();
+  const viewModel = useReviewBottomSheetViewModel(productId);
 
   return <ReviewBottomSheetView {...viewModel} />;
 }

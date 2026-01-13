@@ -59,7 +59,7 @@ export async function createProductComment(params: CreateProductComment) {
 
 export async function getUserProductComment(productId: number) {
   const { data } = await marketPlaceApiClient.get<{
-    comment: string;
+    content: string;
     rating: number;
   }>(`/products/${productId}/user-comment`);
 
