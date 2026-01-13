@@ -8,6 +8,7 @@ import { PaginatedResponse } from "../interfaces/http/paginated-response";
 import {
   CreateProductComment,
   CreateProductCommentResponse,
+  GetUserProductCommentResponse,
 } from "../interfaces/http/create-product-comments";
 import {
   UpdateProductComment,
@@ -58,10 +59,10 @@ export async function createProductComment(params: CreateProductComment) {
 }
 
 export async function getUserProductComment(productId: number) {
-  const { data } = await marketPlaceApiClient.get<{
-    content: string;
-    rating: number;
-  }>(`/products/${productId}/user-comment`);
+  const { data } =
+    await marketPlaceApiClient.get<GetUserProductCommentResponse>(
+      `/products/${productId}/user-comment`
+    );
 
   return data;
 }
