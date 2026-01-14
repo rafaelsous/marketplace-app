@@ -1,18 +1,27 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Text, TouchableOpacity } from "react-native";
 
 import { useCartViewModel } from "./useCart.viewModel";
 import { useUserStore } from "@/shared/store/user-store";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { CartProductCard } from "./components/CartProductCard";
 
-export function CartView({}: Readonly<ReturnType<typeof useCartViewModel>>) {
+export function CartView({
+  products,
+}: Readonly<ReturnType<typeof useCartViewModel>>) {
   const { logout } = useUserStore();
 
   return (
-    <View className="flex-1 items-center justify-center gap-4">
-      <Text className="text-purple-base">Cart Screen View</Text>
+    <SafeAreaView className="flex-1">
+      <FlatList
+        data={products}
+        keyExtractor={({ id }) => `product-cart-${id}`}
+        renderItem={({ item }) => <CartProductCard product={item} />}
+        contentContainerClassName="px-6 gap-2"
+      />
 
       <TouchableOpacity onPress={logout}>
         <Text>Logout</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }

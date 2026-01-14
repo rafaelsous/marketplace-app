@@ -16,6 +16,8 @@ export function CommentItem({ comment }: Readonly<CommentItemProps>) {
 
   const isCurrentUser = user?.id === comment.user.id;
 
+  console.log(comment.user.avatar.url);
+
   return (
     <View className="bg-white p-2 pr-3 rounded-lg gap-2 shadow-sm">
       <View className="flex-row items-center justify-between gap-2">
@@ -23,7 +25,7 @@ export function CommentItem({ comment }: Readonly<CommentItemProps>) {
           {comment.user.avatar.url &&
           comment.user.avatar.url.trim().length > 0 ? (
             <Image
-              source={{ uri: comment.user.avatar.url }}
+              source={{ uri: comment.user.avatar.url ?? "" }}
               className="w-full h-full"
               resizeMode="cover"
             />
