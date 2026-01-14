@@ -73,7 +73,7 @@ export function ReviewBottomSheetView({
                 numberOfLines={8}
                 textAlign="left"
                 textAlignVertical="top"
-                className="w-full h-[150px]"
+                className="w-full h-[150px] text-gray-500"
                 value={ratingForm.content}
                 onChangeText={handleContentChange}
               />

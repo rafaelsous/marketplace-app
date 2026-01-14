@@ -1,17 +1,8 @@
-import { Text, TouchableOpacity, View } from "react-native";
-
-import { useUserStore } from "@/shared/store/user-store";
+import { CartView } from "@/viewModels/Cart/Cart.view";
+import { useCartViewModel } from "@/viewModels/Cart/useCart.viewModel";
 
 export default function Cart() {
-  const { logout } = useUserStore();
+  const viewModel = useCartViewModel();
 
-  return (
-    <View className="flex-1 items-center justify-center gap-4">
-      <Text className="text-purple-base">Cart Screen</Text>
-
-      <TouchableOpacity onPress={logout}>
-        <Text>Logout</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  return <CartView {...viewModel} />;
 }
