@@ -59,11 +59,8 @@ export function ReviewBottomSheetView({
             </View>
 
             <View>
-              <Text className="text-md text-gray-300 uppercase">
-                Comentário
-              </Text>
-
               <AppInput
+                label="Comentário"
                 placeholder={
                   ratingForm.isEditing
                     ? "Atualize sua avaliação"
