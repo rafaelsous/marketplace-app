@@ -10,6 +10,7 @@ import { CartProductCard } from "./components/CartProductCard";
 
 export function CartView({
   products,
+  handleOpenCreditCardBottomSheet,
 }: Readonly<ReturnType<typeof useCartViewModel>>) {
   return (
     <SafeAreaView className="flex-1">
@@ -21,7 +22,13 @@ export function CartView({
         ListHeaderComponent={<CartHeader />}
         ListHeaderComponentClassName="mb-6"
         ListEmptyComponent={<CartEmptyList />}
-        ListFooterComponent={products.length > 0 ? <CartFooter /> : null}
+        ListFooterComponent={
+          products.length > 0 ? (
+            <CartFooter
+              openCreditCardBottomSheet={handleOpenCreditCardBottomSheet}
+            />
+          ) : null
+        }
         ListFooterComponentClassName="mt-6 items-center"
       />
     </SafeAreaView>

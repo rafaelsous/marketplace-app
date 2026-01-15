@@ -8,7 +8,13 @@ import { AppIcon } from "@/shared/components/AppIcon";
 import { AppButton } from "@/shared/components/AppButton";
 import { AppPriceText } from "@/shared/components/AppPriceText";
 
-export function CartFooter() {
+interface CartFooterProps {
+  openCreditCardBottomSheet: () => void;
+}
+
+export function CartFooter({
+  openCreditCardBottomSheet,
+}: Readonly<CartFooterProps>) {
   const { total } = useCartStore();
 
   return (
@@ -31,6 +37,7 @@ export function CartFooter() {
             hitSlop={16}
             activeOpacity={0.7}
             className="flex-row items-center gap-2"
+            onPress={openCreditCardBottomSheet}
           >
             <AppIcon
               name="CardOutline"
