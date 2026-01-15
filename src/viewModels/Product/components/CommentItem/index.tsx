@@ -16,8 +16,6 @@ export function CommentItem({ comment }: Readonly<CommentItemProps>) {
 
   const isCurrentUser = user?.id === comment.user.id;
 
-  console.log(comment.user.avatar.url);
-
   return (
     <View className="bg-white p-2 pr-3 rounded-lg gap-2 shadow-sm">
       <View className="flex-row items-center justify-between gap-2">
