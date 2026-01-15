@@ -59,9 +59,7 @@ export const cartService = {
     }
 
     const updatedProductList = productsList.map((product) =>
-      product.id === productId
-        ? { ...product, quantity: product.quantity + quantity }
-        : product
+      product.id === productId ? { ...product, quantity } : product
     );
     const updatedTotal = cartService.calculateTotal(updatedProductList);
 

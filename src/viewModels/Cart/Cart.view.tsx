@@ -21,7 +21,7 @@ export function CartView({
         ListHeaderComponent={<CartHeader />}
         ListHeaderComponentClassName="mb-6"
         ListEmptyComponent={<CartEmptyList />}
-        ListFooterComponent={<CartFooter />}
+        ListFooterComponent={products.length > 0 ? <CartFooter /> : null}
         ListFooterComponentClassName="mt-6 items-center"
       />
     </SafeAreaView>
