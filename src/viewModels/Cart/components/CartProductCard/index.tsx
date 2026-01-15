@@ -13,7 +13,7 @@ interface CartProductCardProps {
 
 export function CartProductCard({ product }: Readonly<CartProductCardProps>) {
   return (
-    <View className="h-[72px] p-1 flex-row items-center gap-3 bg-white rounded-lg">
+    <View className="h-[72px] p-1 flex-row items-center gap-3 bg-white rounded-lg shadow-lg">
       <Image
         source={{ uri: product?.image ?? "" }}
         resizeMode="cover"
