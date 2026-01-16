@@ -8,9 +8,9 @@ import { AppIcon } from "@/shared/components/AppIcon";
 import { AppInput } from "@/shared/components/AppInput";
 import { AppButton } from "@/shared/components/AppButton";
 
-export function AddCreditCardBottomSheetView({}: ReturnType<
-  typeof useAddCreditCardBottomSheetViewModel
->) {
+export function AddCreditCardBottomSheetView({
+  handleCreateCreditCard,
+}: ReturnType<typeof useAddCreditCardBottomSheetViewModel>) {
   return (
     <ScrollView className="p-6">
       <View className="pb-4 gap-10">

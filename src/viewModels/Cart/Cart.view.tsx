@@ -10,6 +10,8 @@ import { CartProductCard } from "./components/CartProductCard";
 
 export function CartView({
   products,
+  creditCards,
+  isLoadingCreditCards,
   handleOpenCreditCardBottomSheet,
 }: Readonly<ReturnType<typeof useCartViewModel>>) {
   return (
@@ -26,6 +28,8 @@ export function CartView({
           products.length > 0 ? (
             <CartFooter
               openCreditCardBottomSheet={handleOpenCreditCardBottomSheet}
+              creditCards={creditCards}
+              isLoading={isLoadingCreditCards}
             />
           ) : null
         }
