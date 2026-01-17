@@ -3,7 +3,7 @@ import { CreditCard } from "../credit-card";
 export interface CreateCreditCard {
   number: string;
   CVV: number;
-  expirationDate: Date;
+  expirationDate: string;
 }
 
 export interface CreatedCreditCardResponse {

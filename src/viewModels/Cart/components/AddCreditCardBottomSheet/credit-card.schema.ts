@@ -17,16 +17,16 @@ export const creditCardSchema = yup.object().shape({
         const cleaned = value.replaceAll(/\s/g, "");
 
         return /^\d{16}$/.test(cleaned);
-      }
+      },
     ),
   expirationDate: yup
     .string()
     .required("Data de vencimento é obrigatória")
-    .matches(/^d{2}\/d{2}$/, "Data de vencimento deve ter o formato MM/AA"),
+    .matches(/^\d{2}\/\d{2}$/, "Data de vencimento deve ter o formato MM/AA"),
   CVV: yup
     .string()
     .required("CVV é obrigatório")
-    .matches(/^d{3}$/, "CVV deve conter 3 dígitos"),
+    .matches(/^\d{3}$/, "CVV deve conter 3 dígitos"),
 });
 
 export type CreditCardFormData = yup.InferType<typeof creditCardSchema>;

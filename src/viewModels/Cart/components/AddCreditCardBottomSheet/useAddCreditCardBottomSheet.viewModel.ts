@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { CreditCardFormData, creditCardSchema } from "./credit-card.schema";
-import { CreateCreditCard } from "@/shared/interfaces/http/create-credit-card";
 import { useCreateCreditCardMutation } from "@/shared/queries/credit-card/use-create-credit-card.mutation";
+import { useBottomSheetStore } from "@/shared/store/bottomsheet-store";
 
 function expirationDateMask(value: string) {
   const cleaned = value.replaceAll(/\D/g, "");
@@ -28,10 +28,35 @@ function creditCardNumberMask(value: string) {
   return cleaned.replaceAll(/(\d{4})(?=\d)/g, "$1 ").trim();
 }
 
+function formatExpirationDateForApi(
+  dateString: string,
+  setError: (message: string) => void,
+): string {
+  const [month, year] = dateString.split("/").map(Number);
+
+  if (month < 1 || month > 12) {
+    setError("Mês inválido");
+    throw new Error("Mês inválido");
+  }
+
+  if (month < 0 || month > 99) {
+    setError("Ano inválido");
+    throw new Error("Ano inválido");
+  }
+
+  const fullYear = 2000 + year;
+
+  const expirationDate = new Date(fullYear, month, 0);
+  const isoDate = expirationDate.toISOString().split("T")[0];
+
+  return isoDate;
+}
+
 export function useAddCreditCardBottomSheetViewModel() {
+  const { close: closeBottomSheet } = useBottomSheetStore();
   const createCreditCardMutation = useCreateCreditCardMutation();
 
-  const { reset, control, clearErrors, handleSubmit } =
+  const { reset, control, clearErrors, handleSubmit, setError } =
     useForm<CreditCardFormData>({
       resolver: yupResolver(creditCardSchema),
       defaultValues: {
@@ -42,8 +67,29 @@ export function useAddCreditCardBottomSheetViewModel() {
       },
     });
 
-  async function handleCreateCreditCard(creditCard: CreateCreditCard) {
-    await createCreditCardMutation.mutateAsync(creditCard);
+  const handleCreateCreditCard = handleSubmit(
+    async ({ number, expirationDate: rawExpirationDate, CVV }) => {
+      const cleanedCreditCardNumber = number.replaceAll(/\s/g, "");
+      const expirationDate = formatExpirationDateForApi(
+        rawExpirationDate,
+        (message) =>
+          setError("expirationDate", {
+            message,
+          }),
+      );
+
+      await createCreditCardMutation.mutateAsync({
+        number: cleanedCreditCardNumber,
+        expirationDate,
+        CVV: Number(CVV),
+      });
+
+      closeBottomSheet();
+    },
+  );
+
+  function handleCloseBottomSheet() {
+    closeBottomSheet();
   }
 
   return {
@@ -53,6 +99,7 @@ export function useAddCreditCardBottomSheetViewModel() {
     handleSubmit,
     expirationDateMask,
     creditCardNumberMask,
+    handleCloseBottomSheet,
     handleCreateCreditCard,
   };
 }

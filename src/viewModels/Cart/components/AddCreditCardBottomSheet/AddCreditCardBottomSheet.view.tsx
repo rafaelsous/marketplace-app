@@ -12,6 +12,7 @@ export function AddCreditCardBottomSheetView({
   control,
   expirationDateMask,
   creditCardNumberMask,
+  handleCloseBottomSheet,
   handleCreateCreditCard,
 }: Readonly<ReturnType<typeof useAddCreditCardBottomSheetViewModel>>) {
   return (
@@ -23,7 +24,11 @@ export function AddCreditCardBottomSheetView({
               Cartão de crédito
             </Text>
 
-            <TouchableOpacity hitSlop={16} activeOpacity={0.7}>
+            <TouchableOpacity
+              hitSlop={16}
+              activeOpacity={0.7}
+              onPress={handleCloseBottomSheet}
+            >
               <AppIcon
                 name="CloseSquareOutline"
                 size={24}
@@ -80,11 +85,13 @@ export function AddCreditCardBottomSheetView({
 
         <View className="flex-row items-center justify-between gap-3">
           <View className="flex-1">
-            <AppButton variant="outlined">Cancelar</AppButton>
+            <AppButton variant="outlined" onPress={handleCloseBottomSheet}>
+              Cancelar
+            </AppButton>
           </View>
 
           <View className="flex-1">
-            <AppButton>Salvar</AppButton>
+            <AppButton onPress={handleCreateCreditCard}>Salvar</AppButton>
           </View>
         </View>
       </View>
