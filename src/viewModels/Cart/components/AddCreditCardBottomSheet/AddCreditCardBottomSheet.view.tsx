@@ -10,6 +10,8 @@ import { AppInputController } from "@/shared/components/AppInputController";
 
 export function AddCreditCardBottomSheetView({
   control,
+  expirationDateMask,
+  creditCardNumberMask,
   handleCreateCreditCard,
 }: Readonly<ReturnType<typeof useAddCreditCardBottomSheetViewModel>>) {
   return (
@@ -44,8 +46,9 @@ export function AddCreditCardBottomSheetView({
             label="Número"
             placeholder="Número do cartão"
             leftIcon="CardOutline"
-            maxLength={16}
+            maxLength={19}
             keyboardType="numeric"
+            mask={creditCardNumberMask}
           />
 
           <View className="flex-row gap-4">
@@ -56,6 +59,8 @@ export function AddCreditCardBottomSheetView({
                 label="Vencimento"
                 placeholder="MM/AA"
                 leftIcon="CalendarOutline"
+                keyboardType="numeric"
+                mask={expirationDateMask}
               />
             </View>
 
