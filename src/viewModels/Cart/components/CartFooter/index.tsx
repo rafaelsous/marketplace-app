@@ -10,6 +10,7 @@ import { colors } from "@/styles/colors";
 
 import { useCartStore } from "@/shared/store/cart-store";
 
+import { CreditCardItem } from "../CreditCardItem";
 import { AppIcon } from "@/shared/components/AppIcon";
 import { AppButton } from "@/shared/components/AppButton";
 import { CreditCard } from "@/shared/interfaces/credit-card";
@@ -74,7 +75,7 @@ export function CartFooter({
         <FlatList
           data={creditCards}
           keyExtractor={({ id }) => `credit-card-${id}`}
-          renderItem={({ item }) => <Text>{item.number}</Text>}
+          renderItem={({ item }) => <CreditCardItem creditCard={item} />}
         />
       )}
 
