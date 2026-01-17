@@ -5,12 +5,13 @@ import { colors } from "@/styles/colors";
 import { useAddCreditCardBottomSheetViewModel } from "./useAddCreditCardBottomSheet.viewModel";
 
 import { AppIcon } from "@/shared/components/AppIcon";
-import { AppInput } from "@/shared/components/AppInput";
 import { AppButton } from "@/shared/components/AppButton";
+import { AppInputController } from "@/shared/components/AppInputController";
 
 export function AddCreditCardBottomSheetView({
+  control,
   handleCreateCreditCard,
-}: ReturnType<typeof useAddCreditCardBottomSheetViewModel>) {
+}: Readonly<ReturnType<typeof useAddCreditCardBottomSheetViewModel>>) {
   return (
     <ScrollView className="p-6">
       <View className="pb-4 gap-10">
@@ -29,12 +30,17 @@ export function AddCreditCardBottomSheetView({
             </TouchableOpacity>
           </View>
 
-          <AppInput
+          <AppInputController
+            control={control}
+            name="titularName"
             label="Nome"
             placeholder="Nome do titular"
             leftIcon="UserOutline"
           />
-          <AppInput
+
+          <AppInputController
+            control={control}
+            name="number"
             label="Número"
             placeholder="Número do cartão"
             leftIcon="CardOutline"
@@ -44,7 +50,9 @@ export function AddCreditCardBottomSheetView({
 
           <View className="flex-row gap-4">
             <View className="flex-1">
-              <AppInput
+              <AppInputController
+                control={control}
+                name="expirationDate"
                 label="Vencimento"
                 placeholder="MM/AA"
                 leftIcon="CalendarOutline"
@@ -52,7 +60,9 @@ export function AddCreditCardBottomSheetView({
             </View>
 
             <View className="flex-1">
-              <AppInput
+              <AppInputController
+                control={control}
+                name="CVV"
                 label="CVV"
                 placeholder="Código de 3 dígitos"
                 leftIcon="LockOutline"
