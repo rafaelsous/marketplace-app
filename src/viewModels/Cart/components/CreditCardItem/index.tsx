@@ -1,35 +1,13 @@
-import { Text, TouchableOpacity, View } from "react-native";
-
-import { colors } from "@/styles/colors";
-
-import { AppIcon } from "@/shared/components/AppIcon";
+import { CreditCardItemView } from "./CreditCardItem.view";
 import { CreditCard } from "@/shared/interfaces/credit-card";
+import { useCreditCardItemViewModel } from "./useCreditCardItem.viewModel";
 
 interface CreditCardItemProps {
   creditCard: CreditCard;
 }
 
-export function CreditCardItem({
-  creditCard: { number, expirationDate },
-}: Readonly<CreditCardItemProps>) {
-  return (
-    <TouchableOpacity
-      activeOpacity={0.7}
-      className="p-3 flex-row gap-2 border border-shape rounded-lg"
-    >
-      <AppIcon name="CardOutline" size={24} color={colors.gray[300]} />
+export function CreditCardItem({ creditCard }: Readonly<CreditCardItemProps>) {
+  const viewModel = useCreditCardItemViewModel(creditCard);
 
-      <View className="flex-1 gap-[6px]">
-        <Text className="text-base text-gray-400 font-semibold">{number}</Text>
-
-        <Text className="text-base text-gray-400 font-semibold">
-          {expirationDate.toString()}
-        </Text>
-      </View>
-
-      <TouchableOpacity hitSlop={16} activeOpacity={0.7}>
-        <AppIcon name="Pen2Outline" size={24} color={colors["purple-base"]} />
-      </TouchableOpacity>
-    </TouchableOpacity>
-  );
+  return <CreditCardItemView {...viewModel} />;
 }

@@ -29,7 +29,7 @@ export function useFilterViewModel() {
       ? updateFilter({
           key: "selectedCategories",
           value: filterState.selectedCategories.filter(
-            (categoryId) => categoryId !== selectedCategoryId
+            (categoryId) => categoryId !== selectedCategoryId,
           ),
         })
       : updateFilter({
@@ -39,8 +39,6 @@ export function useFilterViewModel() {
   }
 
   function handleApplyFilters() {
-    console.log("Applying filters...");
-
     applyFilters();
     close();
   }

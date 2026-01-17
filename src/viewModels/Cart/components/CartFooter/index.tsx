@@ -29,10 +29,8 @@ export function CartFooter({
 }: Readonly<CartFooterProps>) {
   const { total } = useCartStore();
 
-  console.log(creditCards);
-
   return (
-    <View className="w-full p-3 gap-4 bg-white rounded-lg shadow-lg">
+    <View className="w-full p-3 gap-4s bg-white rounded-lg shadow-lg">
       <View className="py-2 gap-3">
         <View className="flex-row items-center">
           <Text className="flex-1 text-gray-400 uppercase">Valor total</Text>
@@ -76,10 +74,11 @@ export function CartFooter({
           data={creditCards}
           keyExtractor={({ id }) => `credit-card-${id}`}
           renderItem={({ item }) => <CreditCardItem creditCard={item} />}
+          showsVerticalScrollIndicator={false}
         />
       )}
 
-      <AppButton>Confirmar compra</AppButton>
+      <AppButton className="mt-4">Confirmar compra</AppButton>
     </View>
   );
 }
