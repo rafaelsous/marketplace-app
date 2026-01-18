@@ -8,7 +8,7 @@ export function useCreateOrderMutation() {
     mutationFn: createOrder,
     onSuccess: (response) => {
       console.log(response);
-      Toast.error("Pedido criado com sucesso!", "top");
+      Toast.success("Pedido criado com sucesso!", "top");
     },
     onError: (error) => {
       console.log(error);

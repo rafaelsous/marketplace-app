@@ -9,8 +9,8 @@ export interface CartFooterProps {
 }
 
 export function CartFooter({
-  creditCards,
   isLoading,
+  creditCards,
   openCreditCardBottomSheet,
 }: Readonly<CartFooterProps>) {
   const viewModel = useCartFooterViewModel();

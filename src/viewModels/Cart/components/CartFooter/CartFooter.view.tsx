@@ -20,6 +20,8 @@ export function CartFooterView({
   total,
   isLoading,
   creditCards,
+  isOrderLoading,
+  handleCreateOrder,
   selectedCreditCard,
   setSelectedCreditCard,
   openCreditCardBottomSheet,
@@ -79,7 +81,13 @@ export function CartFooterView({
         />
       )}
 
-      <AppButton className="mt-4">Confirmar compra</AppButton>
+      <AppButton
+        className="mt-4"
+        isLoading={isOrderLoading}
+        onPress={handleCreateOrder}
+      >
+        Confirmar compra
+      </AppButton>
     </View>
   );
 }
