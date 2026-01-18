@@ -4,10 +4,22 @@ import { useCreditCardItemViewModel } from "./useCreditCardItem.viewModel";
 
 interface CreditCardItemProps {
   creditCard: CreditCard;
+  isSelected: boolean;
+  setSelectedCreditCard: (creditCard: CreditCard) => void;
 }
 
-export function CreditCardItem({ creditCard }: Readonly<CreditCardItemProps>) {
+export function CreditCardItem({
+  creditCard,
+  isSelected,
+  setSelectedCreditCard,
+}: Readonly<CreditCardItemProps>) {
   const viewModel = useCreditCardItemViewModel(creditCard);
 
-  return <CreditCardItemView {...viewModel} />;
+  return (
+    <CreditCardItemView
+      isSelected={isSelected}
+      setSelectedCreditCard={setSelectedCreditCard}
+      {...viewModel}
+    />
+  );
 }

@@ -3,16 +3,26 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { colors } from "@/styles/colors";
 
 import { AppIcon } from "@/shared/components/AppIcon";
+import { CreditCard } from "@/shared/interfaces/credit-card";
 import { useCreditCardItemViewModel } from "./useCreditCardItem.viewModel";
 
 export function CreditCardItemView({
+  creditCard,
+  isSelected,
+  setSelectedCreditCard,
   formatedExpirationDate,
   formatedCreditCardNumber,
-}: Readonly<ReturnType<typeof useCreditCardItemViewModel>>) {
+}: Readonly<
+  ReturnType<typeof useCreditCardItemViewModel> & {
+    isSelected: boolean;
+    setSelectedCreditCard: (creditCard: CreditCard) => void;
+  }
+>) {
   return (
     <TouchableOpacity
+      onPress={() => setSelectedCreditCard(creditCard)}
       activeOpacity={0.7}
-      className="p-3 flex-row gap-2 border border-shape rounded-lg"
+      className={`p-3 flex-row gap-2 border ${isSelected ? "border-purple-base" : "border-shape"} rounded-lg`}
     >
       <AppIcon name="CardOutline" size={24} color={colors.gray[300]} />
 

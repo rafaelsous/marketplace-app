@@ -7,6 +7,7 @@ export function useCreditCardItemViewModel(creditCard: CreditCard) {
   const formatedCreditCardNumber = creditCard.number.slice(-4);
 
   return {
+    creditCard,
     formatedExpirationDate,
     formatedCreditCardNumber,
   };
