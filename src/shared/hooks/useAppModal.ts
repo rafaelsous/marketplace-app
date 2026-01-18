@@ -7,6 +7,10 @@ import {
   SelectionModalProps,
 } from "../components/Modals/SelectionModal";
 import { SolarIconName } from "../components/AppIcon";
+import {
+  SuccessModal,
+  SuccessModalProps,
+} from "../components/Modals/SuccessModal";
 
 export type SelectionVariant = "primary" | "secondary" | "danger";
 
@@ -18,7 +22,7 @@ export interface SelectionOption {
 }
 
 export function useAppModal() {
-  const { open } = useModalStore();
+  const { open, close } = useModalStore();
 
   function showSelection({
     title,
@@ -34,9 +38,24 @@ export function useAppModal() {
         title,
         message,
         options,
-      } as SelectionModalProps)
+      } as SelectionModalProps),
     );
   }
 
-  return { showSelection };
+  function showSuccess(config: SuccessModalProps) {
+    open(
+      createElement(SuccessModal, {
+        ...config,
+        onButtonPress: () => {
+          if (config.onButtonPress) {
+            config.onButtonPress();
+          }
+
+          close();
+        },
+      }),
+    );
+  }
+
+  return { showSelection, showSuccess };
 }

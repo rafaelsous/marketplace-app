@@ -4,6 +4,7 @@ import { Toast } from "toastify-react-native";
 
 import { useCartStore } from "@/shared/store/cart-store";
 
+import { useAppModal } from "@/shared/hooks/useAppModal";
 import { CreditCard } from "@/shared/interfaces/credit-card";
 import { useCreateOrderMutation } from "@/shared/queries/order/use-create-order.mutation";
 
@@ -12,6 +13,8 @@ export function useCartFooterViewModel() {
     useState<CreditCard | null>(null);
 
   const { total, products, clearCart } = useCartStore();
+  const { showSuccess } = useAppModal();
+
   const createOrderMutation = useCreateOrderMutation();
 
   async function handleCreateOrder() {
@@ -28,7 +31,12 @@ export function useCartFooterViewModel() {
 
     clearCart();
 
-    router.push("/orders");
+    showSuccess({
+      title: "Sucesso",
+      message: "Pedido realizado com sucesso!",
+      buttonText: "Ver pedidos",
+      onButtonPress: () => router.push("/orders"),
+    });
   }
 
   return {
