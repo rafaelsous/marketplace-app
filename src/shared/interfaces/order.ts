@@ -1,20 +1,13 @@
 export interface Order {
-  creditCardId: number;
-  items: {
-    productId: number;
-    quantity: number;
-  }[];
-}
-
-export interface OrderResponse {
-  message: string;
-  ordersCount: number;
-  orders: [
-    {
-      id: number;
-      productId: number;
-      quantity: number;
-      totalPrice: number;
-    },
-  ];
+  id: number;
+  productId: number;
+  productName: string;
+  productPhoto: string;
+  quantity: number;
+  totalPrice: number;
+  createdAt: Date;
+  creditCard: {
+    id: number;
+    maskedNumber: string;
+  };
 }
