@@ -1,4 +1,5 @@
 import { marketPlaceApiClient } from "../api/marketplace";
+import { OrdersResponse } from "../interfaces/http/orders-response";
 import { CreateOrder, OrderResponse } from "../interfaces/http/create-order";
 
 export async function createOrder(order: CreateOrder) {
@@ -11,7 +12,7 @@ export async function createOrder(order: CreateOrder) {
 }
 
 export async function getOrders() {
-  const { data } = await marketPlaceApiClient.get<OrderResponse>("/orders");
+  const { data } = await marketPlaceApiClient.get<OrdersResponse>("/orders");
 
   return data;
 }

@@ -1,17 +1,8 @@
-import { Text, TouchableOpacity, View } from "react-native";
-
-import { useUserStore } from "@/shared/store/user-store";
+import { OrdersView } from "@/viewModels/Orders/Orders.view";
+import { useOrdersViewModel } from "@/viewModels/Orders/useOrdersViewModel";
 
 export default function Orders() {
-  const { logout } = useUserStore();
+  const viewModel = useOrdersViewModel();
 
-  return (
-    <View className="flex-1 items-center justify-center gap-4">
-      <Text className="text-purple-base">Orders Screen</Text>
-
-      <TouchableOpacity onPress={logout}>
-        <Text>Logout</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  return <OrdersView {...viewModel} />;
 }
