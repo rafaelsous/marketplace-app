@@ -1,6 +1,7 @@
 import { FlatList, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { OrderCard } from "./components/OrderCard";
 import { useUserStore } from "@/shared/store/user-store";
 import { useOrdersViewModel } from "./useOrdersViewModel";
 
@@ -14,7 +15,8 @@ export function OrdersView({
       <FlatList
         data={orders}
         keyExtractor={({ id }) => `order-${id}`}
-        renderItem={({ item }) => <Text>{item.productName}</Text>}
+        renderItem={({ item }) => <OrderCard order={item} />}
+        contentContainerClassName="px-6 pb-[120px] gap-2"
         showsVerticalScrollIndicator={false}
       />
 
