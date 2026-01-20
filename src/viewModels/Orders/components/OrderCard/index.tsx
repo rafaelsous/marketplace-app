@@ -1,7 +1,7 @@
+import { format } from "date-fns";
 import { Image, Text, View } from "react-native";
 
 import { Order } from "@/shared/interfaces/order";
-import { format } from "date-fns";
 import { AppPriceText } from "@/shared/components/AppPriceText";
 
 interface OrderCardProps {
