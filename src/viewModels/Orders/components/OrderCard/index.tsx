@@ -1,6 +1,8 @@
 import { Image, Text, View } from "react-native";
 
 import { Order } from "@/shared/interfaces/order";
+import { format } from "date-fns";
+import { AppPriceText } from "@/shared/components/AppPriceText";
 
 interface OrderCardProps {
   order: Order;
@@ -20,23 +22,36 @@ export function OrderCard({ order }: Readonly<OrderCardProps>) {
       />
 
       <View className="p-2 flex-1 gap-3">
-        <View className="flex-row items-center justify-between">
+        <View className="flex-row items-center justify-between gap-3">
           <Text
             className="flex-1 text-base text-gray-500 font-bold"
             numberOfLines={1}
           >
             {order.productName}
           </Text>
-          <Text>{order.createdAt.toString()}</Text>
+
+          <Text className="text-md text-gray-300">
+            {format(order.createdAt, "dd/MM/yy")}
+          </Text>
         </View>
 
         <View className="gap-[2x]">
-          <Text>
-            {order.quantity} {order.quantity > 1 ? "unidades" : "unidade"}
-            <Text> • R$ {order.totalPrice}</Text>
-          </Text>
+          <View className="flex-row">
+            <Text className="text-sm text-gray-400">
+              {order.quantity} {order.quantity > 1 ? "unidades" : "unidade"}{" "}
+              •{" "}
+            </Text>
 
-          <Text>Cartão final {order.creditCard.maskedNumber}</Text>
+            <AppPriceText
+              value={order.totalPrice}
+              classNameCurrency="text-sm text-gray-400"
+              classNameValue="text-sm text-gray-400"
+            />
+          </View>
+
+          <Text className="text-sm text-gray-400">
+            Cartão final {order.creditCard.maskedNumber.slice(-4)}
+          </Text>
         </View>
       </View>
     </View>
