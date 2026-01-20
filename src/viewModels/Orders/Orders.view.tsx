@@ -1,30 +1,28 @@
-import { FlatList, Text, TouchableOpacity } from "react-native";
+import { FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { OrderCard } from "./components/OrderCard";
-import { useUserStore } from "@/shared/store/user-store";
 import { useOrdersViewModel } from "./useOrdersViewModel";
+
+import { OrderCard } from "./components/OrderCard";
 import { CartEmptyList } from "./components/EmptyList";
+import { OrdersHeader } from "./components/OrdersHeader";
 
 export function OrdersView({
   orders,
 }: Readonly<ReturnType<typeof useOrdersViewModel>>) {
-  const { logout } = useUserStore();
-
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView edges={["top"]} className="flex-1">
       <FlatList
-        data={[]}
+        data={orders}
         keyExtractor={({ id }) => `order-${id}`}
         renderItem={({ item }) => <OrderCard order={item} />}
-        contentContainerClassName="px-6 pb-[120px] gap-2"
+        contentContainerClassName="px-6 gap-2"
+        contentContainerStyle={{ paddingBottom: 20 }}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={CartEmptyList}
+        ListHeaderComponent={OrdersHeader}
+        ListHeaderComponentClassName="mb-6"
       />
-
-      <TouchableOpacity onPress={logout}>
-        <Text>Logout</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 }

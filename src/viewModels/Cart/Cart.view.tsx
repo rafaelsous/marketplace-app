@@ -15,12 +15,13 @@ export function CartView({
   handleOpenCreditCardBottomSheet,
 }: Readonly<ReturnType<typeof useCartViewModel>>) {
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView edges={["top"]} className="flex-1">
       <FlatList
         data={products}
         keyExtractor={({ id }) => `product-cart-${id}`}
         renderItem={({ item }) => <CartProductCard product={item} />}
         contentContainerClassName="px-6 gap-2"
+        contentContainerStyle={{ paddingBottom: 20 }}
         ListHeaderComponent={<CartHeader />}
         ListHeaderComponentClassName="mb-6"
         ListEmptyComponent={<CartEmptyList />}

@@ -1,10 +1,9 @@
+import { FlatList, RefreshControl } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FlatList, RefreshControl, Text, TouchableOpacity } from "react-native";
 
 import { colors } from "@/styles/colors";
 
 import { useHomeViewModel } from "./useHome.viewModel";
-import { useUserStore } from "@/shared/store/user-store";
 
 import { Footer } from "./components/Footer";
 import { ProductCard } from "./components/ProductCard";
@@ -21,8 +20,6 @@ export function HomeView({
   searchInputText,
   setSearchInputText,
 }: Readonly<ReturnType<typeof useHomeViewModel>>) {
-  const { logout } = useUserStore();
-
   return (
     <SafeAreaView edges={["top"]} className="flex-1 gap-4">
       <FlatList
@@ -44,7 +41,8 @@ export function HomeView({
         }
         onEndReached={handleEndReached}
         ListHeaderComponentClassName="gap-8"
-        contentContainerClassName="px-4 pb-[120px]"
+        contentContainerStyle={{ paddingBottom: 20 }}
+        contentContainerClassName="px-4"
         refreshControl={
           <RefreshControl
             refreshing={isRefetching}
@@ -54,10 +52,6 @@ export function HomeView({
           />
         }
       />
-
-      <TouchableOpacity onPress={logout} className="pb-16 self-center">
-        <Text>Logout</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 }
