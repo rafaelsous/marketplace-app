@@ -6,7 +6,7 @@ import { colors } from "@/styles/colors";
 import { AppIcon } from "@/shared/components/AppIcon";
 import { AppButton } from "@/shared/components/AppButton";
 
-export function ProductDetailError() {
+export function OrdersError() {
   return (
     <View className="px-6 flex-1 justify-center gap-12 bg-background">
       <View className="gap-5">
@@ -15,7 +15,7 @@ export function ProductDetailError() {
         </View>
 
         <Text className="text-lg text-danger" style={{ textAlign: "center" }}>
-          Ocorreu um erro ao buscar os detalhes do produto
+          Ocorreu um erro ao buscar a lista de pedidos
         </Text>
       </View>
 
