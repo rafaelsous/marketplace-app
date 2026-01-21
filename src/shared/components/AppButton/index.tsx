@@ -60,6 +60,7 @@ export function AppButton({
     <TouchableOpacity
       activeOpacity={0.7}
       className={styles.base({ className })}
+      disabled={isLoading}
       {...rest}
     >
       {renderContent()}

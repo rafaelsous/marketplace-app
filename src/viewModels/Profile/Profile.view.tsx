@@ -15,6 +15,7 @@ export function ProfileView({
   control,
   onSubmit,
   avatarUri,
+  isSubmitting,
   handleSelectAvatar,
 }: Readonly<ReturnType<typeof useProfileViewModel>>) {
   return (
@@ -88,7 +89,7 @@ export function ProfileView({
               name="password"
               label="Senha atual"
               leftIcon="KeyMinimalisticSquare2Outline"
-              placeholder="Sua senha"
+              placeholder="Senha atual"
               secureTextEntry
             />
 
@@ -97,12 +98,14 @@ export function ProfileView({
               name="passwordConfirm"
               label="Nova senha"
               leftIcon="KeyMinimalisticSquare2Outline"
-              placeholder="Confirme a senha"
+              placeholder="Sua nova senha"
               secureTextEntry
             />
           </View>
 
-          <AppButton onPress={onSubmit}>Atualizar cadastro</AppButton>
+          <AppButton onPress={onSubmit} isLoading={isSubmitting}>
+            Atualizar cadastro
+          </AppButton>
         </View>
       </ScrollView>
     </KeyboardContainer>
