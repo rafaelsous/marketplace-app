@@ -16,6 +16,7 @@ export default function PrivateLayout() {
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="product/[id]" />
+        <Stack.Screen name="profile" />
       </Stack>
       <AppBottomSheet />
     </>

@@ -1,9 +1,10 @@
+import { router } from "expo-router";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
 import { colors } from "@/styles/colors";
 
-import { useUserStore } from "@/shared/store/user-store";
 import { AppIcon } from "@/shared/components/AppIcon";
+import { useUserStore } from "@/shared/store/user-store";
 
 export function HomeHeader() {
   const { user } = useUserStore();
@@ -31,6 +32,7 @@ export function HomeHeader() {
           hitSlop={16}
           activeOpacity={0.7}
           className="flex-row items-center gap-2"
+          onPress={() => router.push("/(private)/profile")}
         >
           <Text className="text-base text-purple-base font-semibold">
             Ver perfil
