@@ -7,6 +7,7 @@ import { useProfileViewModel } from "./useProfile.viewModel";
 
 import { AppIcon } from "@/shared/components/AppIcon";
 import { AppButton } from "@/shared/components/AppButton";
+import { ProfileHeader } from "./components/ProfileHeader";
 import { KeyboardContainer } from "@/shared/components/KeyboardContainer";
 import { AppInputController } from "@/shared/components/AppInputController";
 
@@ -19,8 +20,10 @@ export function ProfileView({
   return (
     <KeyboardContainer>
       <ScrollView className="px-[40px] flex-1">
+        <ProfileHeader />
+
         <TouchableOpacity
-          className="w-[120px] h-[120px] mb-8 items-center justify-center self-center rounded-xl bg-shape overflow-hidden"
+          className="w-[120px] h-[120px] mt-6 mb-8 items-center justify-center self-center rounded-xl bg-shape overflow-hidden"
           activeOpacity={0.7}
         >
           {avatarUri ? (
@@ -40,6 +43,13 @@ export function ProfileView({
 
         <View className="pb-16 gap-10">
           <View className="gap-6">
+            <Text
+              style={{ marginTop: 24 }}
+              className="text-base text-gray-500 font-bold"
+            >
+              Dados pessoais
+            </Text>
+
             <AppInputController
               control={control}
               name="name"
