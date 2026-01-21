@@ -4,11 +4,12 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { colors } from "@/styles/colors";
 
 import { AppIcon } from "@/shared/components/AppIcon";
-import { useUserStore } from "@/shared/store/user-store";
 
-export function ProfileHeader() {
-  const { logout } = useUserStore();
+interface ProfileHeaderProps {
+  onLogout: () => void;
+}
 
+export function ProfileHeader({ onLogout }: Readonly<ProfileHeaderProps>) {
   return (
     <View className="flex-row items-center justify-between">
       <TouchableOpacity
@@ -29,7 +30,7 @@ export function ProfileHeader() {
       <TouchableOpacity
         hitSlop={16}
         activeOpacity={0.7}
-        onPress={logout}
+        onPress={onLogout}
         className="p-[2x] flex-row items-center gap-2"
       >
         <AppIcon name="Logout3Outline" size={20} color={colors["danger"]} />

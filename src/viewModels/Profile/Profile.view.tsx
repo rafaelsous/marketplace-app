@@ -16,12 +16,13 @@ export function ProfileView({
   onSubmit,
   avatarUri,
   isSubmitting,
+  handleLogout,
   handleSelectAvatar,
 }: Readonly<ReturnType<typeof useProfileViewModel>>) {
   return (
     <KeyboardContainer>
       <ScrollView className="px-[40px] flex-1">
-        <ProfileHeader />
+        <ProfileHeader onLogout={handleLogout} />
 
         <TouchableOpacity
           className="w-[120px] h-[120px] mt-6 mb-8 items-center justify-center self-center rounded-xl bg-shape overflow-hidden"

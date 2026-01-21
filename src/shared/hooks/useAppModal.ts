@@ -16,7 +16,7 @@ export type SelectionVariant = "primary" | "secondary" | "danger";
 
 export interface SelectionOption {
   text: string;
-  icon: SolarIconName;
+  icon?: SolarIconName;
   onPress: () => void;
   variant?: SelectionVariant;
 }

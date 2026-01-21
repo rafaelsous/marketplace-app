@@ -40,7 +40,9 @@ export function SuccessModal({
       </View>
 
       <View className="items-center gap-4">
-        <Text className="leading-6 font-semibold">{message}</Text>
+        <Text className="text-base text-center leading-6 font-semibold">
+          {message}
+        </Text>
 
         <AppButton onPress={onButtonPress}>{buttonText}</AppButton>
       </View>
