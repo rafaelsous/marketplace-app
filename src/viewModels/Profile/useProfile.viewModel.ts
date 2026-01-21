@@ -1,13 +1,15 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { CameraType } from "expo-image-picker";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { useUserStore } from "@/shared/store/user-store";
 import { useCartStore } from "@/shared/store/cart-store";
 import { useModalStore } from "@/shared/store/modal-store";
 
+import { useImage } from "@/shared/hooks/useImage";
 import { useAppModal } from "@/shared/hooks/useAppModal";
 import { ProfileFormData, profileSchema } from "./profile.schema";
+import { useUploadAvatarMutation } from "@/shared/queries/auth/use-upload-avatar.mutation";
 import { useUpdateUserProfileMutation } from "@/shared/queries/profile/use-update-user-profile.mutation";
 
 export function useProfileViewModel() {
@@ -15,10 +17,19 @@ export function useProfileViewModel() {
   const { clearCart } = useCartStore();
   const { user, logout } = useUserStore();
 
+  const uploadAvatarMutation = useUploadAvatarMutation();
+  const updateUserProfileMutation = useUpdateUserProfileMutation();
+
+  const { handleSelectImage } = useImage({
+    callback: async (newUrl) => {
+      if (newUrl) {
+        await uploadAvatarMutation.mutateAsync(newUrl);
+      }
+    },
+    cameraType: CameraType.front,
+  });
+
   const { showSelection } = useAppModal();
-  const [avatarUri, setAvatarUri] = useState<string | null>(
-    user?.avatarUrl ?? null,
-  );
 
   const {
     control,
@@ -34,8 +45,6 @@ export function useProfileViewModel() {
       newPassword: undefined,
     },
   });
-
-  const updateUserProfileMutation = useUpdateUserProfileMutation();
 
   function validatePasswords(userData: ProfileFormData) {
     if (!userData.password) return true;
@@ -55,10 +64,6 @@ export function useProfileViewModel() {
 
     await updateUserProfileMutation.mutateAsync(userData);
   });
-
-  async function handleSelectAvatar() {
-    setAvatarUri("");
-  }
 
   function handleLogout() {
     showSelection({
@@ -87,9 +92,9 @@ export function useProfileViewModel() {
     errors,
     control,
     onSubmit,
-    avatarUri,
+    avatarUri: user?.avatarUrl,
     isSubmitting,
     handleLogout,
-    handleSelectAvatar,
+    handleSelectImage,
   };
 }

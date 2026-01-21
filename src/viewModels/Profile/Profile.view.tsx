@@ -17,7 +17,7 @@ export function ProfileView({
   avatarUri,
   isSubmitting,
   handleLogout,
-  handleSelectAvatar,
+  handleSelectImage,
 }: Readonly<ReturnType<typeof useProfileViewModel>>) {
   return (
     <KeyboardContainer>
@@ -27,6 +27,7 @@ export function ProfileView({
         <TouchableOpacity
           className="w-[120px] h-[120px] mt-6 mb-8 items-center justify-center self-center rounded-xl bg-shape overflow-hidden"
           activeOpacity={0.7}
+          onPress={handleSelectImage}
         >
           {avatarUri ? (
             <Image
@@ -96,7 +97,7 @@ export function ProfileView({
 
             <AppInputController
               control={control}
-              name="passwordConfirm"
+              name="newPassword"
               label="Nova senha"
               leftIcon="KeyMinimalisticSquare2Outline"
               placeholder="Sua nova senha"
