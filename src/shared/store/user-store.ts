@@ -47,6 +47,6 @@ export const useUserStore = create<UserStore>()(
     {
       name: "marketplace-auth",
       storage: createJSONStorage(() => AsyncStorage),
-    }
-  )
+    },
+  ),
 );

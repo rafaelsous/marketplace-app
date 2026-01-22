@@ -8,7 +8,7 @@ import { UploadAvatarResponse } from "../interfaces/http/upload-avatar-response"
 export async function register(userRegisterData: RegisterRequest) {
   const { data } = await marketPlaceApiClient.post<AuthResponse>(
     "/auth/register",
-    userRegisterData
+    userRegisterData,
   );
 
   return data;
@@ -17,8 +17,10 @@ export async function register(userRegisterData: RegisterRequest) {
 export async function login(loginData: LoginRequest) {
   const { data } = await marketPlaceApiClient.post<AuthResponse>(
     "/auth/login",
-    loginData
+    loginData,
   );
+
+  data.user.avatarUrl = `${baseURL}${data.user.avatarUrl}`;
 
   return data;
 }
@@ -39,7 +41,7 @@ export async function uploadAvatar(avatarUri: string) {
       headers: {
         "Content-Type": "multipart/form-data",
       },
-    }
+    },
   );
 
   data.url = `${baseURL}${data.url}`;

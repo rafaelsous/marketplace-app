@@ -25,7 +25,7 @@ export function ProfileView({
         <ProfileHeader onLogout={handleLogout} />
 
         <TouchableOpacity
-          className="w-[120px] h-[120px] mt-6 mb-8 items-center justify-center self-center rounded-xl bg-shape overflow-hidden"
+          className="w-[120px] h-[120px] mt-6 mb-8 items-center justify-center self-center rounded-xl bg-shape overflow-hidden shadow-sm"
           activeOpacity={0.7}
           onPress={handleSelectImage}
         >
