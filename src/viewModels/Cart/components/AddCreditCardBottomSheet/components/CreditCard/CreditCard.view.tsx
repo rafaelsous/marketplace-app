@@ -22,7 +22,7 @@ export function CreditCartView({
   }
 >) {
   return (
-    <View className="h-[192px] mx-5">
+    <View className="h-[192px] mx-5 border border-purple-base rounded-[16px] overflow-hidden">
       <Animated.View
         style={{
           position: "absolute",
@@ -49,7 +49,6 @@ export function CreditCartView({
 
           <View
             className={clsx("px-1 py-2 rounded-md", {
-              "": focusedField !== "number",
               "bg-white/20": focusedField === "number",
             })}
           >
@@ -61,7 +60,6 @@ export function CreditCartView({
           <View className="flex-row items-end justify-between">
             <View
               className={clsx("px-1 py-2 rounded-lg", {
-                "": focusedField !== "name",
                 "bg-white/20": focusedField === "name",
               })}
             >
@@ -72,7 +70,6 @@ export function CreditCartView({
 
             <View
               className={clsx("px-1 py-2 rounded-lg", {
-                "": focusedField !== "expiry",
                 "bg-white/20": focusedField === "expiry",
               })}
             >
@@ -84,7 +81,40 @@ export function CreditCartView({
         </LinearGradient>
       </Animated.View>
 
-      <Animated.View></Animated.View>
+      <Animated.View
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: 192,
+          backfaceVisibility: "hidden",
+        }}
+      >
+        <LinearGradient
+          colors={PURPLE_GRADIENT}
+          start={{ x: 0, y: 0.5 }}
+          style={{
+            flex: 1,
+            paddingTop: 16,
+            paddingBottom: 20,
+            gap: 46,
+          }}
+        >
+          <View className="h-10 bg-gray-500" />
+
+          <View className="px-6 flex-row items-center justify-center gap-3">
+            <View
+              className={clsx("p-3 flex-1 bg-white rounded-md", {
+                "bg-blue-100": focusedField === "cvv",
+              })}
+            >
+              <Text className="text-gray-400 self-end tracking-widest">
+                123
+              </Text>
+            </View>
+            <Text className="text-white">CVV</Text>
+          </View>
+        </LinearGradient>
+      </Animated.View>
     </View>
   );
 }
