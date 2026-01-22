@@ -4,6 +4,7 @@ import { colors } from "@/styles/colors";
 
 import { useAddCreditCardBottomSheetViewModel } from "./useAddCreditCardBottomSheet.viewModel";
 
+import { CreditCard } from "./components/CreditCard";
 import { AppIcon } from "@/shared/components/AppIcon";
 import { AppButton } from "@/shared/components/AppButton";
 import { AppInputController } from "@/shared/components/AppInputController";
@@ -36,6 +37,8 @@ export function AddCreditCardBottomSheetView({
               />
             </TouchableOpacity>
           </View>
+
+          <CreditCard />
 
           <AppInputController
             control={control}
