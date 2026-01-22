@@ -63,7 +63,7 @@ export function useAddCreditCardBottomSheetViewModel() {
   const { close: closeBottomSheet } = useBottomSheetStore();
   const createCreditCardMutation = useCreateCreditCardMutation();
 
-  const { reset, control, clearErrors, handleSubmit, setError } =
+  const { reset, control, clearErrors, handleSubmit, setError, watch } =
     useForm<CreditCardFormData>({
       resolver: yupResolver(creditCardSchema),
       defaultValues: {
@@ -114,6 +114,7 @@ export function useAddCreditCardBottomSheetViewModel() {
   }
 
   const isFlipped = focusedField === "cvv";
+  const watchedValue = watch();
 
   return {
     reset,
@@ -128,5 +129,11 @@ export function useAddCreditCardBottomSheetViewModel() {
     creditCardNumberMask,
     handleCloseBottomSheet,
     handleCreateCreditCard,
+    creditCardData: {
+      number: watchedValue.number,
+      name: watchedValue.titularName,
+      expiry: watchedValue.expirationDate,
+      cvv: watchedValue.CVV,
+    },
   };
 }

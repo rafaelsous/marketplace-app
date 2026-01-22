@@ -6,6 +6,16 @@ import {
   withTiming,
 } from "react-native-reanimated";
 
+function formatCreditCardNumber(creditCardNumber: string) {
+  const cleaned = creditCardNumber.replaceAll(/\s/g, "");
+
+  // const padded = cleaned.padEnd(16, "•");
+  const padded = cleaned.padEnd(16, "0");
+
+  // return padded.match(/.{1,4}/g)?.join(" ") || "•••• •••• •••• ••••";
+  return padded.match(/.{1,4}/g)?.join(" ") || "0000 0000 0000 0000";
+}
+
 export function useCreditCardViewModel(isFlipped: boolean) {
   const flipValue = useSharedValue(0);
 
@@ -34,5 +44,6 @@ export function useCreditCardViewModel(isFlipped: boolean) {
   return {
     backAnimatedStyled,
     frontAnimatedStyled,
+    formatCreditCardNumber,
   };
 }

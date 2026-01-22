@@ -13,6 +13,7 @@ export function AddCreditCardBottomSheetView({
   control,
   isFlipped,
   focusedField,
+  creditCardData,
   handleFieldBlur,
   handleFieldFocus,
   expirationDateMask,
@@ -42,7 +43,11 @@ export function AddCreditCardBottomSheetView({
             </TouchableOpacity>
           </View>
 
-          <CreditCard isFlipped={isFlipped} focusedField={focusedField} />
+          <CreditCard
+            isFlipped={isFlipped}
+            focusedField={focusedField}
+            creditCardData={creditCardData}
+          />
 
           <AppInputController
             control={control}
