@@ -11,6 +11,10 @@ import { AppInputController } from "@/shared/components/AppInputController";
 
 export function AddCreditCardBottomSheetView({
   control,
+  isFlipped,
+  focusedField,
+  handleFieldBlur,
+  handleFieldFocus,
   expirationDateMask,
   creditCardNumberMask,
   handleCloseBottomSheet,
@@ -38,7 +42,7 @@ export function AddCreditCardBottomSheetView({
             </TouchableOpacity>
           </View>
 
-          <CreditCard />
+          <CreditCard isFlipped={isFlipped} focusedField={focusedField} />
 
           <AppInputController
             control={control}
@@ -46,6 +50,8 @@ export function AddCreditCardBottomSheetView({
             label="Nome"
             placeholder="Nome do titular"
             leftIcon="UserOutline"
+            onBlur={handleFieldBlur}
+            onFocus={() => handleFieldFocus("name")}
           />
 
           <AppInputController
@@ -57,6 +63,8 @@ export function AddCreditCardBottomSheetView({
             maxLength={19}
             keyboardType="numeric"
             mask={creditCardNumberMask}
+            onBlur={handleFieldBlur}
+            onFocus={() => handleFieldFocus("number")}
           />
 
           <View className="flex-row gap-4">
@@ -69,6 +77,8 @@ export function AddCreditCardBottomSheetView({
                 leftIcon="CalendarOutline"
                 keyboardType="numeric"
                 mask={expirationDateMask}
+                onBlur={handleFieldBlur}
+                onFocus={() => handleFieldFocus("expiry")}
               />
             </View>
 
@@ -81,6 +91,8 @@ export function AddCreditCardBottomSheetView({
                 leftIcon="LockOutline"
                 maxLength={3}
                 keyboardType="numeric"
+                onBlur={handleFieldBlur}
+                onFocus={() => handleFieldFocus("cvv")}
               />
             </View>
           </View>

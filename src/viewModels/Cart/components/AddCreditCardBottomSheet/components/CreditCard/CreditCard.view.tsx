@@ -2,9 +2,14 @@ import { View } from "react-native";
 
 import { colors } from "@/styles/colors";
 import { useCreditCardViewModel } from "./useCreditCard.viewModel";
+import { FocusedField } from "../../useAddCreditCardBottomSheet.viewModel";
 
-export function CreditCartView({}: Readonly<
-  ReturnType<typeof useCreditCardViewModel>
+export function CreditCartView({
+  focusedField,
+}: Readonly<
+  ReturnType<typeof useCreditCardViewModel> & {
+    focusedField: FocusedField | null;
+  }
 >) {
   return (
     <View
