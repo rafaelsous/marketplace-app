@@ -16,20 +16,27 @@ const PURPLE_GRADIENT: readonly [string, string, string] = [
 
 export function CreditCartView({
   focusedField,
+  backAnimatedStyled,
+  frontAnimatedStyled,
 }: Readonly<
   ReturnType<typeof useCreditCardViewModel> & {
     focusedField: FocusedField | null;
   }
 >) {
   return (
-    <View className="h-[192px] mx-5 border border-purple-base rounded-[16px] overflow-hidden">
+    <View className="h-[192px] mx-5 rounded-[16px] overflow-hidden">
       <Animated.View
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: 192,
-          backfaceVisibility: "hidden",
-        }}
+        style={[
+          frontAnimatedStyled,
+          {
+            position: "absolute",
+            width: "100%",
+            height: 192,
+            borderWidth: 1,
+            borderColor: colors["purple-base"],
+            backfaceVisibility: "hidden",
+          },
+        ]}
       >
         <LinearGradient
           colors={PURPLE_GRADIENT}
@@ -82,12 +89,17 @@ export function CreditCartView({
       </Animated.View>
 
       <Animated.View
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: 192,
-          backfaceVisibility: "hidden",
-        }}
+        style={[
+          backAnimatedStyled,
+          {
+            position: "absolute",
+            width: "100%",
+            height: 192,
+            borderWidth: 1,
+            borderColor: colors["purple-base"],
+            backfaceVisibility: "hidden",
+          },
+        ]}
       >
         <LinearGradient
           colors={PURPLE_GRADIENT}
