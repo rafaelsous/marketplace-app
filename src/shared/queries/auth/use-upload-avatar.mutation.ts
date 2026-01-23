@@ -10,7 +10,6 @@ export function useUploadAvatarMutation() {
   const mutation = useMutation({
     mutationFn: uploadAvatar,
     onSuccess: (response) => {
-      console.log(response);
       updateUser({ avatarUrl: response.url });
     },
     onError: (error) => {

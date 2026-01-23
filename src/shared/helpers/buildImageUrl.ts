@@ -6,8 +6,13 @@ export const buildImageUrl = (originalUrl: string) => {
     return originalUrl;
   }
 
+  const isPhysicalDevice = Constants.expoConfig?.extra?.isPhysicalDevice;
+
   return Platform.select({
-    android: originalUrl.replace("localhost", "10.0.2.2"),
+    android: originalUrl.replace(
+      "localhost",
+      isPhysicalDevice ? "192.168.10.104" : "10.0.2.2",
+    ),
     ios: originalUrl,
   });
 };

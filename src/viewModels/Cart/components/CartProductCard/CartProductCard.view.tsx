@@ -3,13 +3,15 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import { colors } from "@/styles/colors";
 
 import { CartProduct } from "@/shared/store/cart-store";
+import { buildImageUrl } from "@/shared/helpers/buildImageUrl";
 import { useCartProductCardViewModel } from "./useCartProductCard.viewModel";
 
 import { AppIcon } from "@/shared/components/AppIcon";
 import { AppPriceText } from "@/shared/components/AppPriceText";
 
-interface CartProductCardViewProps
-  extends ReturnType<typeof useCartProductCardViewModel> {
+interface CartProductCardViewProps extends ReturnType<
+  typeof useCartProductCardViewModel
+> {
   product: CartProduct;
 }
 
@@ -21,7 +23,7 @@ export function CartProductCardView({
   return (
     <View className="h-[72px] p-1 flex-row items-center gap-3 bg-white rounded-lg shadow-lg">
       <Image
-        source={{ uri: product?.image ?? "" }}
+        source={{ uri: product.image ? buildImageUrl(product?.image) : "" }}
         resizeMode="cover"
         className="size-[64px] rounded-md"
       />

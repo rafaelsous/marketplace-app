@@ -3,6 +3,7 @@ import { StarBold } from "@solar-icons/react-native";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
 import { colors } from "@/styles/colors";
+import { buildImageUrl } from "@/shared/helpers/buildImageUrl";
 
 import { Product } from "@/shared/interfaces/product";
 import { AppIcon } from "@/shared/components/AppIcon";
@@ -39,7 +40,7 @@ export function ProductHeader({
 
       <View className="w-full mt-4 mb-7 bg-white rounded-lg overflow-hidden shadow-gray-500/30">
         <Image
-          source={{ uri: productDetails.photo }}
+          source={{ uri: buildImageUrl(productDetails.photo) }}
           resizeMode="cover"
           className="w-full h-[197px] rounded-lg"
         />

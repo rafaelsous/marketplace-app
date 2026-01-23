@@ -4,6 +4,7 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 
 import { colors } from "@/styles/colors";
 
+import { buildImageUrl } from "@/shared/helpers/buildImageUrl";
 import { AppPriceText } from "@/shared/components/AppPriceText";
 import { useProductCardViewModel } from "./useProductCard.viewModel";
 
@@ -20,7 +21,7 @@ export function ProductCardView({
     >
       <View>
         <Image
-          source={{ uri: product.photo }}
+          source={{ uri: buildImageUrl(product.photo) }}
           resizeMode="cover"
           className="w-full h-[96px] rounded-md"
         />
