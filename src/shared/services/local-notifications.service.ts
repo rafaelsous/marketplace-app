@@ -19,7 +19,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
-async function setNotificationChannel() {
+async function setupNotificationChannel() {
   if (Platform.OS === "android") {
     await Notifications.setNotificationChannelAsync(DEFAULT_CHANNEL, {
       name: "Notificações do Marketplace",
@@ -29,3 +29,43 @@ async function setNotificationChannel() {
     });
   }
 }
+
+interface ScheduleCartReminder {
+  productId: number;
+  productName: string;
+  delayInMinutes: number;
+}
+
+async function scheduleCartReminder({
+  productId,
+  productName,
+  delayInMinutes,
+}: Readonly<ScheduleCartReminder>) {
+  const hasPermission = await Notifications.requestPermissionsAsync();
+
+  if (hasPermission.status !== "granted") return;
+
+  await setupNotificationChannel();
+
+  const notification = await Notifications.scheduleNotificationAsync({
+    identifier: NOTIFICATIONS_IDS.CART_REMINDER,
+    content: {
+      title: "🛒 Você esqueceu algo no carrinho!",
+      body: `O produto "${productName}" está esperando por você. Finalize sua compra agora!`,
+      data: {
+        type: "cart_reminder",
+        productId: String(productId),
+      },
+    },
+    trigger: {
+      type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+      seconds: delayInMinutes,
+    },
+  });
+
+  return notification;
+}
+
+export const localNotificationsService = {
+  scheduleCartReminder,
+};

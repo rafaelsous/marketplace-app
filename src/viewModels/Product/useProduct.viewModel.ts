@@ -3,13 +3,13 @@ import { createElement } from "react";
 
 import { useCartStore } from "@/shared/store/cart-store";
 import { useModalStore } from "@/shared/store/modal-store";
-
-import { AddToCartSuccessModal } from "./components/AddToCartSuccessModal";
+import { useBottomSheetStore } from "@/shared/store/bottomsheet-store";
+import { localNotificationsService } from "@/shared/services/local-notifications.service";
 import { useGetProductDetailsQuery } from "@/shared/queries/product/use-get-product-details.query";
 import { useGetProductCommentsInfiniteQuery } from "@/shared/queries/product/use-get-product-comments-infinite.query";
-import { useBottomSheetStore } from "@/shared/store/bottomsheet-store";
-import { create } from "zustand";
+
 import { ReviewBottomSheet } from "./components/ReviewBottonSheet";
+import { AddToCartSuccessModal } from "./components/AddToCartSuccessModal";
 
 export function useProductViewModel(productId: number) {
   const {
@@ -67,13 +67,19 @@ export function useProductViewModel(productId: number) {
 
     addProduct({ id, name, price: value, image: photo });
 
+    localNotificationsService.scheduleCartReminder({
+      productId: id,
+      productName: name,
+      delayInMinutes: 30,
+    });
+
     open(
       createElement(AddToCartSuccessModal, {
         productName: name,
         onClose: close,
         onGoToCart,
         onContinueShopping,
-      })
+      }),
     );
   }
 
