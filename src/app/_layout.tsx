@@ -6,10 +6,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "@/styles/global.css";
 
 import { AppModal } from "@/shared/components/AppModal";
+import { useNotifications } from "@/shared/hooks/useNotifications";
 
 const queryClient = new QueryClient();
 
 export default function RootLayout() {
+  useNotifications();
+
   return (
     <GestureHandlerRootView className="flex-1">
       <QueryClientProvider client={queryClient}>
