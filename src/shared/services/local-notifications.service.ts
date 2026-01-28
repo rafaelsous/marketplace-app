@@ -10,6 +10,8 @@ const NOTIFICATIONS_IDS = {
   PURCHASE_FEEDBACK: "purchase-feedback",
 };
 
+const DEEP_LINK = "marketplace://";
+
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldPlaySound: true,
@@ -69,11 +71,13 @@ async function scheduleCartReminder({
       data: {
         type: "cart_reminder",
         productId: String(productId),
+        deepLink: `${DEEP_LINK}cart`,
       },
     },
     trigger: {
       type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
       seconds: delayInMinutes * 60,
+      // seconds: 5,
     },
   });
 }
@@ -98,11 +102,13 @@ async function scheduleFeedbackNotification({
       data: {
         type: "purchase_feedback",
         productId: String(productId),
+        deepLink: `${DEEP_LINK}product/${productId}`,
       },
     },
     trigger: {
       type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
       seconds: delayInMinutes * 60,
+      // seconds: 5,
     },
   });
 }
