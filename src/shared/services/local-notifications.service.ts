@@ -43,7 +43,7 @@ async function setupNotificationChannel() {
   }
 }
 
-interface ScheduleCartReminder {
+interface ScheduleProductParams {
   productId: number;
   productName: string;
   delayInMinutes: number;
@@ -53,7 +53,7 @@ async function scheduleCartReminder({
   productId,
   productName,
   delayInMinutes,
-}: Readonly<ScheduleCartReminder>) {
+}: Readonly<ScheduleProductParams>) {
   const hasPermission = await requestPermissions();
 
   if (!hasPermission) {
@@ -61,7 +61,7 @@ async function scheduleCartReminder({
     return;
   }
 
-  const notification = await Notifications.scheduleNotificationAsync({
+  await Notifications.scheduleNotificationAsync({
     identifier: NOTIFICATIONS_IDS.CART_REMINDER,
     content: {
       title: "🛒 Você esqueceu algo no carrinho!",
@@ -76,12 +76,40 @@ async function scheduleCartReminder({
       seconds: delayInMinutes * 60,
     },
   });
+}
 
-  return notification;
+async function scheduleFeedbackNotification({
+  productId,
+  productName,
+  delayInMinutes,
+}: ScheduleProductParams) {
+  const hasPermission = await requestPermissions();
+
+  if (!hasPermission) {
+    console.log("[LocalNotifications] Permission not granted");
+    return;
+  }
+
+  await Notifications.scheduleNotificationAsync({
+    identifier: `${NOTIFICATIONS_IDS.PURCHASE_FEEDBACK}-${productId}`,
+    content: {
+      title: "⭐ Como foi sua compra?",
+      body: `Você realizou o pedido do produto "${productName}". Envie um feedback do que achou do produto!`,
+      data: {
+        type: "purchase_feedback",
+        productId: String(productId),
+      },
+    },
+    trigger: {
+      type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+      seconds: delayInMinutes * 60,
+    },
+  });
 }
 
 export const localNotificationsService = {
   requestPermissions,
   scheduleCartReminder,
   setupNotificationChannel,
+  scheduleFeedbackNotification,
 };

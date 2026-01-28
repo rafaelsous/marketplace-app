@@ -6,6 +6,7 @@ import { useCartStore } from "@/shared/store/cart-store";
 
 import { useAppModal } from "@/shared/hooks/useAppModal";
 import { CreditCard } from "@/shared/interfaces/credit-card";
+import { localNotificationsService } from "@/shared/services/local-notifications.service";
 import { useCreateOrderMutation } from "@/shared/queries/order/use-create-order.mutation";
 
 export function useCartFooterViewModel() {
@@ -27,6 +28,14 @@ export function useCartFooterViewModel() {
         productId: id,
         quantity,
       })),
+    });
+
+    products.forEach(({ id, name }, index) => {
+      localNotificationsService.scheduleFeedbackNotification({
+        productId: id,
+        productName: name,
+        delayInMinutes: 60 * (index + 1),
+      });
     });
 
     clearCart();
