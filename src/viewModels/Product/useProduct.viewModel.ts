@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { createElement } from "react";
+import { createElement, useEffect } from "react";
 
 import { useCartStore } from "@/shared/store/cart-store";
 import { useModalStore } from "@/shared/store/modal-store";
@@ -11,7 +11,10 @@ import { useGetProductCommentsInfiniteQuery } from "@/shared/queries/product/use
 import { ReviewBottomSheet } from "./components/ReviewBottonSheet";
 import { AddToCartSuccessModal } from "./components/AddToCartSuccessModal";
 
-export function useProductViewModel(productId: number) {
+export function useProductViewModel(
+  productId: number,
+  openFeedbackBottomSheet: boolean,
+) {
   const {
     data: productDetails,
     isLoading,
@@ -92,6 +95,12 @@ export function useProductViewModel(productId: number) {
       }),
     });
   }
+
+  useEffect(() => {
+    if (openFeedbackBottomSheet) {
+      handleOpenReview();
+    }
+  }, [openFeedbackBottomSheet, productDetails]);
 
   return {
     productDetails,
