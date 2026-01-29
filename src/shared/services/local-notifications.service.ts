@@ -64,7 +64,7 @@ async function scheduleCartReminder({
   }
 
   await Notifications.scheduleNotificationAsync({
-    identifier: NOTIFICATIONS_IDS.CART_REMINDER,
+    identifier: `${NOTIFICATIONS_IDS.CART_REMINDER}-${productId}`,
     content: {
       title: "🛒 Você esqueceu algo no carrinho!",
       body: `O produto "${productName}" está esperando por você. Finalize sua compra agora!`,
@@ -113,8 +113,18 @@ async function scheduleFeedbackNotification({
   });
 }
 
+async function cancelNotifications(notificationId: string) {
+  try {
+    await Notifications.cancelScheduledNotificationAsync(notificationId);
+  } catch (error) {
+    console.log("[Local notifications] - Erro: " + JSON.stringify(error));
+  }
+}
+
 export const localNotificationsService = {
+  NOTIFICATIONS_IDS,
   requestPermissions,
+  cancelNotifications,
   scheduleCartReminder,
   setupNotificationChannel,
   scheduleFeedbackNotification,

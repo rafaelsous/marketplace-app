@@ -9,8 +9,6 @@ export default function ProductDetails() {
     openFeedbackBottomSheet?: string;
   }>();
 
-  console.log(openFeedbackBottomSheet);
-
   const viewModel = useProductViewModel(
     Number(id),
     Boolean(openFeedbackBottomSheet),

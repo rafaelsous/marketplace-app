@@ -31,6 +31,10 @@ export function useCartFooterViewModel() {
     });
 
     products.forEach(({ id, name }, index) => {
+      localNotificationsService.cancelNotifications(
+        `${localNotificationsService.NOTIFICATIONS_IDS.CART_REMINDER}-${id}`,
+      );
+
       localNotificationsService.scheduleFeedbackNotification({
         productId: id,
         productName: name,
