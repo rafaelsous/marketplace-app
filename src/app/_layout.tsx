@@ -6,11 +6,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "@/styles/global.css";
 
 import { AppModal } from "@/shared/components/AppModal";
+import { useOneSignal } from "@/shared/hooks/useOneSignal";
 import { useNotifications } from "@/shared/hooks/useNotifications";
 
 const queryClient = new QueryClient();
 
 export default function RootLayout() {
+  useOneSignal();
   useNotifications();
 
   return (

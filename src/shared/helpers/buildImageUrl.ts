@@ -6,7 +6,7 @@ export const buildImageUrl = (originalUrl: string) => {
     return originalUrl;
   }
 
-  const isPhysicalDevice = Constants.expoConfig?.extra?.isPhysicalDevice;
+  const isPhysicalDevice = process.env.EXPO_PUBLIC_IS_PHYSICAL_DEVICE;
 
   return Platform.select({
     android: originalUrl.replace(
