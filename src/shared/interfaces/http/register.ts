@@ -4,4 +4,5 @@ export interface RegisterRequest {
   avatarUrl?: string;
   phone: string;
   password: string;
+  notificationToken?: string;
 }

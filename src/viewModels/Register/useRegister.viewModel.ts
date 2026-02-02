@@ -7,6 +7,7 @@ import { RegisterFormData, registerSchema } from "./register.schema";
 
 import { useImage } from "@/shared/hooks/useImage";
 import { useUserStore } from "@/shared/store/user-store";
+import { useOneSignal } from "@/shared/hooks/useOneSignal";
 import { useUserRegisterMutation } from "@/shared/queries/auth/user-register.mutation";
 import { useUploadAvatarMutation } from "@/shared/queries/auth/use-upload-avatar.mutation";
 
@@ -18,6 +19,7 @@ export function useRegisterViewModel() {
     callback: setAvatarUri,
     cameraType: CameraType.front,
   });
+  const { playerId } = useOneSignal();
 
   async function handleSelectAvatar() {
     await handleSelectImage();
@@ -53,7 +55,10 @@ export function useRegisterViewModel() {
   const onSubmit = handleSubmit(async (userData) => {
     const { passwordConfirm, ...registerData } = userData;
 
-    await userRegisterMutation.mutateAsync(registerData);
+    await userRegisterMutation.mutateAsync({
+      ...registerData,
+      notificationToken: playerId,
+    });
   });
 
   return { control, errors, onSubmit, handleSelectAvatar, avatarUri };
