@@ -1,17 +1,24 @@
 import { marketPlaceApiClient } from "../api/marketplace";
 
-import { Favorite } from "../interfaces/http/favorite";
+import { Favorite, HandlerFavoriteResponse } from "../interfaces/http/favorite";
 
-async function getFavorites(): Promise<Favorite[]> {
+export async function getFavorites(): Promise<Favorite[]> {
   const { data } = await marketPlaceApiClient.get<Favorite[]>("/favorites");
 
   return data;
 }
 
-async function addFavorite(productId: number) {
-  await marketPlaceApiClient.post("/favorites", { productId });
+export async function addFavorite(productId: number) {
+  const { data } = await marketPlaceApiClient.post<HandlerFavoriteResponse>(
+    "/favorites",
+    { productId },
+  );
+
+  return data;
 }
 
-async function removeFavorite(productId: number) {
-  await marketPlaceApiClient.delete(`/favorites/${productId}`);
+export async function removeFavorite(productId: number) {
+  await marketPlaceApiClient.delete<HandlerFavoriteResponse>(
+    `/favorites/${productId}`,
+  );
 }

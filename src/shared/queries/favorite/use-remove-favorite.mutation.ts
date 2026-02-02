@@ -1,0 +1,24 @@
+import { Toast } from "toastify-react-native";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { removeFavorite } from "@/shared/services/favorite.service";
+
+export function useRemoveFavoriteMutation() {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: removeFavorite,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["favorites"],
+      });
+
+      Toast.success("Produto removido dos favoritos");
+    },
+    onError: (error) => {
+      Toast.error(error.message || "Falha ao remover produto dos favoritos");
+    },
+  });
+
+  return mutation;
+}
