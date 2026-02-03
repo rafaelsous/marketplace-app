@@ -7,6 +7,7 @@ import { buildImageUrl } from "@/shared/helpers/buildImageUrl";
 
 import { Product } from "@/shared/interfaces/product";
 import { AppIcon } from "@/shared/components/AppIcon";
+import { FavoriteButton } from "./components/FavoriteButton";
 import { AppPriceText } from "@/shared/components/AppPriceText";
 
 interface ProductHeaderPrams {
@@ -20,7 +21,7 @@ export function ProductHeader({
 }: Readonly<ProductHeaderPrams>) {
   return (
     <>
-      <View>
+      <View className="flex-row items-center justify-between">
         <TouchableOpacity
           hitSlop={16}
           activeOpacity={0.7}
@@ -36,6 +37,8 @@ export function ProductHeader({
             Voltar
           </Text>
         </TouchableOpacity>
+
+        <FavoriteButton productId={productDetails.id} />
       </View>
 
       <View className="w-full mt-4 mb-7 bg-white rounded-lg overflow-hidden shadow-gray-500/30">
