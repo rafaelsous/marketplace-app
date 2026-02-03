@@ -13,10 +13,13 @@ export function useAddFavoriteMutation() {
         queryKey: ["favorites"],
       });
 
-      Toast.success("Produto adicionado aos favoritos");
+      Toast.success("Produto adicionado aos favoritos", "bottom");
     },
     onError: (error) => {
-      Toast.error(error.message || "Falha ao adicionar produto aos favoritos");
+      Toast.error(
+        error.message || "Falha ao adicionar produto aos favoritos",
+        "bottom",
+      );
     },
   });
 

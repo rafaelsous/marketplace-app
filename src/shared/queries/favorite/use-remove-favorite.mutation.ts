@@ -13,10 +13,13 @@ export function useRemoveFavoriteMutation() {
         queryKey: ["favorites"],
       });
 
-      Toast.success("Produto removido dos favoritos");
+      Toast.success("Produto removido dos favoritos", "bottom");
     },
     onError: (error) => {
-      Toast.error(error.message || "Falha ao remover produto dos favoritos");
+      Toast.error(
+        error.message || "Falha ao remover produto dos favoritos",
+        "bottom",
+      );
     },
   });
 
